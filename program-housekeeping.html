@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Housekeeping – Program Pelatihan Seabar College</title>
+<meta name="description" content="Program Housekeeping Seabar College: Pelatihan profesional di bidang Housekeeping untuk berkarier di hotel dan kapal pesiar internasional.">
+<link rel="icon" href="assets/logo.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      colors: { navy: { 950:'#071a33', 900:'#0b2545', 800:'#13315c', 700:'#1d4577' }, sea: { 600:'#0e6a9c', 500:'#1b86b8', 100:'#dcecf6', 50:'#f1f7fb' }, gold: { 500:'#d4a04a', 400:'#e1b567' } },
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+      boxShadow: { card: '0 10px 30px -12px rgba(11,37,69,.25)', soft: '0 8px 24px -10px rgba(11,37,69,.18)' }
+    } }
+  }
+</script>
+<style>
+  body { font-family: Inter, system-ui, sans-serif; color:#0b2545; }
+  .eyebrow::before { content:''; display:inline-block; width:26px; height:2px; background:#0e6a9c; margin-right:10px; vertical-align:middle; }
+  .no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{scrollbar-width:none}
+  /* dropdown Program */
+  #progPanel{visibility:hidden;opacity:0;transform:translate(-50%,10px);transition:opacity .22s ease,transform .22s ease,visibility .22s}
+  #progMenu.open #progPanel{visibility:visible;opacity:1;transform:translate(-50%,0)}
+  #progMenu #progBtn i{transition:transform .25s}
+  #progMenu.open #progBtn i{transform:rotate(180deg)}
+  #progMenu.open .pi{animation:rvUp .45s cubic-bezier(.2,.7,.2,1) var(--d,0ms) backwards}
+  .pi.is-current{background:#eef5fb;box-shadow:inset 0 0 0 1px #cfe3f2}
+  #mProgList{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+  #mProgList.open{grid-template-rows:1fr}
+  #mProgBtn i{transition:transform .25s}#mProgBtn.open i{transform:rotate(180deg)}
+  @media (prefers-reduced-motion:reduce){#progMenu.open .pi{animation:none!important}}
+  .nav-link.active{color:#0b2545;border-bottom:2px solid #0b2545}
+
+  /* ===== animasi masuk (diputar ulang setiap elemen terlihat lagi) ===== */
+  @keyframes rvUp{from{opacity:0;transform:translateY(34px)}}
+  @keyframes rvLeft{from{opacity:0;transform:translateX(-52px)}}
+  @keyframes rvRight{from{opacity:0;transform:translateX(52px)}}
+  @keyframes rvZoom{from{opacity:0;transform:translateY(26px) scale(.88)}}
+  @keyframes fadeSoft{from{opacity:0}}
+  @keyframes popIn{from{opacity:0;transform:scale(.35) rotate(-14deg)}}
+  .rv{opacity:0}
+  .rv.show{opacity:1;animation:rvUp .85s cubic-bezier(.2,.7,.2,1) var(--d,0ms) backwards}
+  .rv-left.show{animation-name:rvLeft}.rv-right.show{animation-name:rvRight}.rv-zoom.show{animation-name:rvZoom}
+  .a-up{animation:rvUp .9s cubic-bezier(.2,.7,.2,1) var(--d,0ms) backwards}
+  .a-left{animation:rvLeft .9s cubic-bezier(.2,.7,.2,1) var(--d,0ms) backwards}
+  .a-fade{animation:fadeSoft 1.6s ease-out var(--d,0ms) backwards}
+  .a-pop{animation:popIn .7s cubic-bezier(.3,1.5,.5,1) var(--d,0ms) backwards}
+  .hero-photo{animation:fadeSoft 1.4s ease-out .15s backwards}
+
+  /* gerak otomatis */
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+  .floaty{animation:floaty 5s ease-in-out infinite}
+  @keyframes twinkle{0%,100%{opacity:.35;transform:scale(.9)}50%{opacity:1;transform:scale(1.1)}}
+  .bokeh{animation:twinkle 4s ease-in-out infinite}
+  @keyframes drift{from{transform:translateX(0)}to{transform:translateX(-18px)}}
+  .drift{animation:drift 7s ease-in-out infinite alternate}
+  .plx{will-change:transform;backface-visibility:hidden}
+  @media (prefers-reduced-motion:reduce){.rv.show,.a-up,.a-left,.a-fade,.a-pop,.hero-photo,.floaty,.bokeh,.drift{animation:none!important}}
+</style>
+</head>
+<body class="bg-white antialiased">
+
+<!-- ============ NAVBAR ============ -->
+<header id="nav" class="fixed inset-x-0 top-0 z-50 bg-white/95 shadow-sm backdrop-blur transition-all duration-300">
+  <div class="mx-auto flex h-[4.2rem] max-w-7xl items-center justify-between px-5 lg:h-20">
+    <a href="index.html" aria-label="Seabar College – Beranda"><img src="assets/logo.png" alt="Seabar College" class="h-11 w-auto sm:h-12"></a>
+    <nav class="hidden items-center gap-7 text-sm font-medium text-navy-800 lg:flex">
+      <a class="nav-link pb-1 hover:text-sea-600" href="index.html">Home</a>
+      <div id="progMenu" class="relative">
+        <a id="progBtn" class="nav-link active inline-flex items-center gap-1 pb-1 hover:text-sea-600" href="index.html#program" aria-haspopup="true" aria-expanded="false" aria-controls="progPanel">Program <i class="fa-solid fa-chevron-down text-[9px]"></i></a>
+        <div id="progPanel" class="absolute left-1/2 top-full z-50 w-[35rem] pt-4">
+          <div class="rounded-2xl bg-white p-3 shadow-[0_24px_60px_-20px_rgba(11,37,69,.35)] ring-1 ring-slate-100">
+            <p class="px-3 pb-2 pt-1 text-[10px] font-bold uppercase tracking-widest text-slate-400">Program Pelatihan</p>
+            <div class="grid grid-cols-2 gap-1">
+              <a href="program-food-beverage.html" class="pi group flex items-center gap-3 rounded-xl p-3 transition hover:bg-sea-50" style="--d:0ms"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea-100 text-base text-navy-800 transition group-hover:bg-navy-900 group-hover:text-white"><i class="fa-solid fa-bell-concierge"></i></span><span class="min-w-0"><span class="block text-[13px] font-bold text-navy-900">Food &amp; Beverage</span><span class="block text-[11px] leading-snug text-slate-500">Pelayanan makanan &amp; minuman</span></span></a>
+              <a href="program-housekeeping.html" class="pi group flex items-center gap-3 rounded-xl p-3 transition hover:bg-sea-50" style="--d:45ms"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea-100 text-base text-navy-800 transition group-hover:bg-navy-900 group-hover:text-white"><i class="fa-solid fa-bed"></i></span><span class="min-w-0"><span class="block text-[13px] font-bold text-navy-900">Housekeeping</span><span class="block text-[11px] leading-snug text-slate-500">Kebersihan &amp; penataan kamar</span></span></a>
+              <a href="program-laundry.html" class="pi group flex items-center gap-3 rounded-xl p-3 transition hover:bg-sea-50" style="--d:90ms"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea-100 text-base text-navy-800 transition group-hover:bg-navy-900 group-hover:text-white"><i class="fa-solid fa-shirt"></i></span><span class="min-w-0"><span class="block text-[13px] font-bold text-navy-900">Laundry</span><span class="block text-[11px] leading-snug text-slate-500">Pengelolaan linen &amp; pakaian</span></span></a>
+              <a href="program-english.html" class="pi group flex items-center gap-3 rounded-xl p-3 transition hover:bg-sea-50" style="--d:135ms"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea-100 text-base text-navy-800 transition group-hover:bg-navy-900 group-hover:text-white"><i class="fa-solid fa-language"></i></span><span class="min-w-0"><span class="block text-[13px] font-bold text-navy-900">English</span><span class="block text-[11px] leading-snug text-slate-500">Bahasa Inggris untuk hospitality</span></span></a>
+              <a href="program-cook.html" class="pi group flex items-center gap-3 rounded-xl p-3 transition hover:bg-sea-50" style="--d:180ms"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea-100 text-base text-navy-800 transition group-hover:bg-navy-900 group-hover:text-white"><i class="fa-solid fa-kitchen-set"></i></span><span class="min-w-0"><span class="block text-[13px] font-bold text-navy-900">Cook</span><span class="block text-[11px] leading-snug text-slate-500">Keterampilan dapur &amp; penyajian</span></span></a>
+              <a href="program-barista-bar.html" class="pi group flex items-center gap-3 rounded-xl p-3 transition hover:bg-sea-50" style="--d:225ms"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea-100 text-base text-navy-800 transition group-hover:bg-navy-900 group-hover:text-white"><i class="fa-solid fa-mug-hot"></i></span><span class="min-w-0"><span class="block text-[13px] font-bold text-navy-900">Barista &amp; Bar</span><span class="block text-[11px] leading-snug text-slate-500">Kopi, minuman &amp; bar service</span></span></a>
+            </div>
+            <a href="index.html#program" class="mt-2 flex items-center justify-between rounded-xl bg-sea-50 px-4 py-2.5 text-xs font-semibold text-navy-800 transition hover:bg-sea-100">Lihat semua program <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+          </div>
+        </div>
+      </div>
+      <a class="nav-link pb-1 hover:text-sea-600" href="index.html#tentang">Tentang Kami</a>
+      <a class="nav-link pb-1 hover:text-sea-600" href="index.html#alumni">Alumni</a>
+      <a class="nav-link pb-1 hover:text-sea-600" href="index.html#penyaluran">Penyaluran Kerja</a>
+      <a class="nav-link pb-1 hover:text-sea-600" href="index.html#team">Team Kami</a>
+      <a class="nav-link pb-1 hover:text-sea-600" href="index.html#berita">Berita</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <button aria-label="Cari" class="hidden p-2 text-navy-900 sm:block"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <a href="#daftar" class="hidden rounded-full bg-navy-900 px-5 py-2.5 text-xs font-semibold text-white transition hover:bg-navy-700 sm:inline-flex">Daftar Sekarang <i class="fa-solid fa-arrow-right ml-1.5 text-[10px]"></i></a>
+      <button id="menuBtn" aria-label="Menu" class="rounded-lg p-2 lg:hidden"><i class="fa-solid fa-bars text-xl text-navy-900"></i></button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden max-h-[calc(100svh-4.2rem)] overflow-y-auto border-t bg-white px-5 py-4 shadow-lg lg:hidden">
+    <div class="flex flex-col gap-3 text-sm font-medium">
+      <a href="index.html">Home</a><div>
+        <button id="mProgBtn" type="button" class="flex w-full items-center justify-between text-left" aria-expanded="false" aria-controls="mProgList">Program <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+        <div id="mProgList"><div class="overflow-hidden"><div class="mt-2 flex flex-col gap-1 border-l-2 border-sea-100 pl-3">
+          <a href="program-food-beverage.html" class="mpi flex items-center gap-3 rounded-lg py-2 pr-2 [&.is-current]:bg-sea-50"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sea-100 text-sm text-navy-800"><i class="fa-solid fa-bell-concierge"></i></span><span><span class="block text-[13px] font-bold text-navy-900">Food &amp; Beverage</span><span class="block text-[11px] font-normal text-slate-500">Pelayanan makanan &amp; minuman</span></span></a>
+          <a href="program-housekeeping.html" class="mpi flex items-center gap-3 rounded-lg py-2 pr-2 [&.is-current]:bg-sea-50"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sea-100 text-sm text-navy-800"><i class="fa-solid fa-bed"></i></span><span><span class="block text-[13px] font-bold text-navy-900">Housekeeping</span><span class="block text-[11px] font-normal text-slate-500">Kebersihan &amp; penataan kamar</span></span></a>
+          <a href="program-laundry.html" class="mpi flex items-center gap-3 rounded-lg py-2 pr-2 [&.is-current]:bg-sea-50"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sea-100 text-sm text-navy-800"><i class="fa-solid fa-shirt"></i></span><span><span class="block text-[13px] font-bold text-navy-900">Laundry</span><span class="block text-[11px] font-normal text-slate-500">Pengelolaan linen &amp; pakaian</span></span></a>
+          <a href="program-english.html" class="mpi flex items-center gap-3 rounded-lg py-2 pr-2 [&.is-current]:bg-sea-50"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sea-100 text-sm text-navy-800"><i class="fa-solid fa-language"></i></span><span><span class="block text-[13px] font-bold text-navy-900">English</span><span class="block text-[11px] font-normal text-slate-500">Bahasa Inggris untuk hospitality</span></span></a>
+          <a href="program-cook.html" class="mpi flex items-center gap-3 rounded-lg py-2 pr-2 [&.is-current]:bg-sea-50"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sea-100 text-sm text-navy-800"><i class="fa-solid fa-kitchen-set"></i></span><span><span class="block text-[13px] font-bold text-navy-900">Cook</span><span class="block text-[11px] font-normal text-slate-500">Keterampilan dapur &amp; penyajian</span></span></a>
+          <a href="program-barista-bar.html" class="mpi flex items-center gap-3 rounded-lg py-2 pr-2 [&.is-current]:bg-sea-50"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sea-100 text-sm text-navy-800"><i class="fa-solid fa-mug-hot"></i></span><span><span class="block text-[13px] font-bold text-navy-900">Barista &amp; Bar</span><span class="block text-[11px] font-normal text-slate-500">Kopi, minuman &amp; bar service</span></span></a>
+          <a href="index.html#program" class="py-2 text-xs font-semibold text-sea-600">Lihat semua program <i class="fa-solid fa-arrow-right ml-1 text-[9px]"></i></a>
+        </div></div></div>
+      </div><a href="index.html#tentang">Tentang Kami</a><a href="index.html#alumni">Alumni</a><a href="index.html#penyaluran">Penyaluran Kerja</a><a href="index.html#team">Team Kami</a><a href="index.html#berita">Berita</a>
+      <a href="#daftar" class="mt-2 rounded-full bg-navy-900 px-5 py-2.5 text-center text-white">Daftar Sekarang <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i></a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============ HERO ============ -->
+<section id="hero" class="relative overflow-hidden bg-gradient-to-r from-[#e6f0fa] via-[#f0f6fc] to-[#dbe9f6] pt-[4.2rem] lg:pt-20">
+  <!-- gelombang samar -->
+  <svg class="pointer-events-none absolute inset-0 h-full w-full opacity-60" viewBox="0 0 1200 320" preserveAspectRatio="none" fill="none" aria-hidden="true">
+    <path d="M0 220C200 120 360 260 560 170S900 60 1200 140V320H0Z" fill="#cfe1f3" fill-opacity=".45"/>
+    <path d="M0 250C220 170 380 290 600 210S940 110 1200 190" stroke="#fff" stroke-opacity=".9" stroke-width="2"/>
+  </svg>
+
+  <!-- FOTO (kanan): restoran + pramusaji. Ganti dengan foto asli lewat data-img pada #heroPhoto -->
+  <div id="heroPhoto" class="hero-photo absolute bottom-0 right-0 top-20 hidden w-[62%] overflow-hidden lg:block" data-img="">
+    <div class="plx absolute -inset-x-6 -inset-y-6" id="heroParallax">
+      <div class="absolute inset-0 bg-gradient-to-b from-[#9cc9ea] via-[#cfe5f5] to-[#7fb3d9]"></div>
+        <div class="absolute inset-x-0 bottom-0 h-[34%] bg-gradient-to-b from-[#4a9cc6] to-[#1a4a7b]"></div>
+        <img src="assets/cruise-ship.png" alt="" class="floaty absolute bottom-[12%] right-[2%] w-[78%] max-w-none">
+        <div class="floaty absolute left-[16%] top-[20%] flex h-28 w-28 items-center justify-center rounded-full bg-white/85 text-5xl text-navy-800 shadow-card"><i class="fa-solid fa-bed"></i></div>
+        <div class="absolute left-[8%] top-[56%] flex h-12 w-12 items-center justify-center rounded-full bg-white/70 text-xl text-sea-600 shadow-soft"><i class="fa-solid fa-broom"></i></div>
+        <div class="absolute left-[34%] top-[8%] flex h-10 w-10 items-center justify-center rounded-full bg-white/60 text-base text-sea-600"><i class="fa-solid fa-soap"></i></div>
+    </div>
+    <div class="pointer-events-none absolute inset-y-0 left-0 w-[45%] bg-gradient-to-r from-[#e9f1fa] via-[#e9f1fa]/70 to-transparent"></div>
+  </div>
+  <!-- foto versi mobile (di bawah teks) -->
+  <div class="relative h-44 overflow-hidden sm:h-56 lg:hidden" aria-hidden="true">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#7a5a3c] via-[#b98f61] to-[#d9b98c]"></div>
+    <div class="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-b from-[#e6f1fa] via-[#a9cbe6] to-[#3d6ea3]"></div>
+    <i class="fa-solid fa-bed absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-7xl text-white/80 drop-shadow-lg"></i>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-6xl px-5 pb-8 pt-8 lg:min-h-[19.5rem] lg:pb-10 lg:pt-10 order-first">
+    <nav aria-label="Breadcrumb" class="a-up flex items-center gap-2 text-xs font-medium text-navy-800" style="--d:100ms">
+      <a href="index.html" aria-label="Beranda" class="hover:text-sea-600"><i class="fa-solid fa-house"></i></a>
+      <i class="fa-solid fa-chevron-right text-[8px] text-slate-400"></i>
+      <a href="index.html#program" class="hover:text-sea-600">Program</a>
+      <i class="fa-solid fa-chevron-right text-[8px] text-slate-400"></i>
+      <span>Housekeeping</span>
+    </nav>
+    <h1 class="a-up mt-5 text-4xl font-extrabold leading-tight tracking-tight text-navy-900 sm:text-5xl" style="--d:220ms">Housekeeping</h1>
+    <p class="a-up mt-3 max-w-md text-[15px] leading-relaxed text-navy-800" style="--d:340ms">Pelatihan profesional di bidang Housekeeping untuk berkarier di hotel dan kapal pesiar internasional.</p>
+    <ul class="mt-6 flex flex-wrap gap-x-8 gap-y-4">
+      <li class="a-up flex items-center gap-3" style="--d:480ms"><span class="a-pop text-3xl text-navy-800" style="--d:560ms"><i class="fa-solid fa-calendar-check"></i></span><div><p class="text-xs font-bold text-navy-900">Durasi</p><p class="text-xs text-slate-600">Sesuai Jadwal</p></div></li>
+      <li class="a-up flex items-center gap-3" style="--d:620ms"><span class="a-pop text-3xl text-navy-800" style="--d:700ms"><i class="fa-solid fa-certificate"></i></span><div><p class="text-xs font-bold text-navy-900">Sertifikat</p><p class="text-xs text-slate-600">Internasional</p></div></li>
+      <li class="a-up flex items-center gap-3" style="--d:760ms"><span class="a-pop text-3xl text-navy-800" style="--d:840ms"><i class="fa-solid fa-chart-line"></i></span><div><p class="text-xs font-bold text-navy-900">Peluang Kerja</p><p class="text-xs text-slate-600">Global</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ TENTANG PROGRAM ============ -->
+<section id="tentang-program" class="mx-auto max-w-6xl scroll-mt-24 px-5 py-12 lg:py-14">
+  <div class="grid gap-10 lg:grid-cols-[1.55fr_1fr]">
+    <div>
+      <p class="rv rv-left eyebrow mb-3 text-[11px] font-bold text-sea-600" style="--d:0ms">Tentang Program</p>
+      <h2 class="rv rv-left text-2xl font-extrabold text-navy-900 sm:text-[1.7rem]" style="--d:100ms">Wujudkan Karier di Dunia Hospitality</h2>
+      <p class="rv rv-left mt-4 max-w-xl text-sm leading-relaxed text-slate-700" style="--d:200ms">Program <b>Housekeeping</b> di <b>Seabar College</b> dirancang untuk membekali Anda dengan keterampilan profesional dalam kebersihan dan penataan kamar maupun area publik, sesuai standar industri perhotelan dan kapal pesiar internasional.</p>
+      <p class="rv rv-left mt-4 max-w-xl text-sm leading-relaxed text-slate-700" style="--d:300ms">Dengan kurikulum yang komprehensif, praktik langsung, dan bimbingan dari instruktur berpengalaman, Anda akan siap menghadapi tantangan karier di industri hospitality global.</p>
+
+      <div class="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div class="rv rv-zoom group rounded-xl bg-white p-4 text-center shadow-soft ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1 hover:shadow-card" style="--d:100ms"><i class="fa-solid fa-bed mb-3 text-3xl text-sea-600 transition group-hover:scale-110"></i><p class="text-xs font-bold leading-snug text-navy-900">Praktik Langsung<br>di Industri</p></div>
+        <div class="rv rv-zoom group rounded-xl bg-white p-4 text-center shadow-soft ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1 hover:shadow-card" style="--d:220ms"><i class="fa-solid fa-globe mb-3 text-3xl text-sea-600 transition group-hover:scale-110"></i><p class="text-xs font-bold leading-snug text-navy-900">Standar<br>Internasional</p></div>
+        <div class="rv rv-zoom group rounded-xl bg-white p-4 text-center shadow-soft ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1 hover:shadow-card" style="--d:340ms"><i class="fa-solid fa-medal mb-3 text-3xl text-sea-600 transition group-hover:scale-110"></i><p class="text-xs font-bold leading-snug text-navy-900">Instruktur<br>Berpengalaman</p></div>
+        <div class="rv rv-zoom group rounded-xl bg-white p-4 text-center shadow-soft ring-1 ring-slate-100 transition duration-300 hover:-translate-y-1 hover:shadow-card" style="--d:460ms"><i class="fa-solid fa-briefcase mb-3 text-3xl text-sea-600 transition group-hover:scale-110"></i><p class="text-xs font-bold leading-snug text-navy-900">Peluang Kerja<br>Global</p></div>
+      </div>
+    </div>
+
+    <!-- kartu daftar -->
+    <aside id="daftar" class="rv rv-right scroll-mt-28 self-start overflow-hidden rounded-3xl bg-white shadow-card ring-1 ring-slate-100" style="--d:150ms">
+      <div class="relative overflow-hidden bg-gradient-to-br from-navy-800 via-navy-900 to-[#0f4a78] px-6 pb-12 pt-6 text-white">
+        <img src="assets/cruise-ship.png" alt="" aria-hidden="true" class="floaty pointer-events-none absolute -right-10 bottom-0 w-[70%] opacity-90 [mask-image:linear-gradient(90deg,transparent,#000_30%)]">
+        <h3 class="relative text-lg font-bold">Siap Bergabung?</h3>
+        <p class="relative mt-2 max-w-[15rem] text-xs leading-relaxed text-white/85">Daftarkan diri Anda sekarang dan mulai perjalanan karier internasional bersama Seabar College.</p>
+      </div>
+      <div class="relative px-6 pb-6">
+        <a href="https://wa.me/6287782882020" target="_blank" rel="noopener" class="relative -top-5 mx-auto -mb-1 flex w-[78%] items-center justify-center gap-2 rounded-full border border-sea-500/40 bg-white px-6 py-3 text-xs font-bold text-navy-900 shadow-card transition hover:-translate-y-0.5 hover:bg-sea-50">Daftar Sekarang <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+        <p class="eyebrow mt-2 text-[10px] font-semibold text-slate-600">Informasi Lebih Lanjut</p>
+        <ul class="mt-4 space-y-3 text-xs text-navy-800">
+          <li><a href="https://wa.me/6287782882020" target="_blank" rel="noopener" class="flex items-center gap-3 hover:text-sea-600"><i class="fa-brands fa-whatsapp w-4 text-base text-navy-800"></i>Chat via WhatsApp</a></li>
+          <li><a href="tel:+6287782882020" class="flex items-center gap-3 hover:text-sea-600"><i class="fa-solid fa-phone w-4 text-navy-800"></i>+62 877 8288 2020</a></li>
+          <li><a href="mailto:info@seabarcollege.com" class="flex items-center gap-3 hover:text-sea-600"><i class="fa-solid fa-envelope w-4 text-navy-800"></i>info@seabarcollege.com</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ KURIKULUM ============ -->
+<section id="kurikulum" class="mx-auto max-w-6xl scroll-mt-24 px-5 pb-12">
+  <div class="rv relative overflow-hidden rounded-[1.75rem] bg-gradient-to-r from-[#e8f0fa] via-[#f1f6fc] to-[#f6f9fd] shadow-soft ring-1 ring-sea-100">
+    <div class="relative z-10 grid lg:grid-cols-[1.05fr_1fr]">
+      <div class="px-6 py-8 sm:px-9 lg:py-10">
+        <p class="rv rv-left eyebrow mb-3 text-[11px] font-bold text-sea-600" style="--d:0ms">Kurikulum Program</p>
+        <h2 class="rv rv-left text-xl font-extrabold text-navy-900 sm:text-2xl" style="--d:100ms">Materi Pembelajaran Lengkap &amp; Terstruktur</h2>
+        <p class="rv rv-left mt-3 max-w-md text-xs leading-relaxed text-slate-700 sm:text-[13px]" style="--d:200ms">Kurikulum kami mencakup teori dan praktik sesuai standar industri perhotelan internasional, meliputi:</p>
+        <ul id="currList" class="mt-5 grid gap-x-8 gap-y-2.5 text-[13px] font-medium text-navy-900 sm:grid-cols-2"></ul>
+        <a href="#kurikulum" class="rv rv-left mt-7 inline-flex items-center gap-2 rounded-full bg-navy-900 px-6 py-3 text-xs font-semibold text-white shadow-card transition hover:bg-navy-700" style="--d:700ms">Lihat Detail Kurikulum <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+      </div>
+      <!-- foto meja makan (ganti dengan foto asli lewat data-img) -->
+      <div id="currPhoto" class="relative min-h-[15rem] overflow-hidden lg:rounded-r-[1.75rem]" data-img="">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#d6e5f4] via-[#a5c5e2] to-[#4b7fb0]"></div>
+        <i class="fa-solid fa-bed floaty absolute left-[48%] top-1/2 -translate-x-1/2 -translate-y-1/2 text-[8rem] text-white/90 drop-shadow-xl"></i>
+        <i class="fa-solid fa-broom absolute right-[12%] top-[16%] text-4xl text-white/65"></i>
+        <i class="fa-solid fa-soap absolute bottom-[14%] right-[22%] text-5xl text-white/55"></i>
+        <div class="pointer-events-none absolute inset-y-0 left-0 hidden w-[34%] bg-gradient-to-r from-[#eff5fc] via-[#eff5fc]/75 to-transparent lg:block"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FASILITAS ============ -->
+<section id="fasilitas" class="mx-auto max-w-6xl scroll-mt-24 px-5 pb-12">
+  <div class="grid items-center gap-8 lg:grid-cols-[1fr_1.45fr]">
+    <div>
+      <p class="rv rv-left eyebrow mb-3 text-[11px] font-bold text-sea-600" style="--d:0ms">Fasilitas Pendukung</p>
+      <h2 class="rv rv-left text-xl font-extrabold text-navy-900 sm:text-2xl" style="--d:100ms">Fasilitas Modern untuk Pembelajaran Optimal</h2>
+      <p class="rv rv-left mt-3 max-w-md text-[13px] leading-relaxed text-slate-700" style="--d:200ms">Kami menyediakan fasilitas lengkap yang mendukung proses belajar mengajar, mulai dari ruang praktik, laboratorium, hingga simulasi kapal pesiar.</p>
+      <a href="#fasilitas" class="rv rv-left mt-5 inline-flex items-center gap-2 rounded-full border border-navy-900 px-5 py-2.5 text-xs font-semibold text-navy-900 transition hover:bg-navy-900 hover:text-white" style="--d:320ms">Lihat Fasilitas <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+    </div>
+    <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <figure class="rv rv-zoom group relative aspect-[3/3.4] overflow-hidden rounded-xl shadow-soft" style="--d:100ms">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#d9c3a1] via-[#b98f61] to-[#6d4f33] transition duration-500 group-hover:scale-110"></div>
+        <i class="fa-solid fa-broom absolute left-1/2 top-[38%] -translate-x-1/2 -translate-y-1/2 text-5xl text-white/70"></i>
+        <div class="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/10 to-transparent"></div>
+        <figcaption class="absolute inset-x-0 bottom-0 p-3 text-[11px] font-bold text-white">Laboratorium Housekeeping</figcaption>
+      </figure>
+      <figure class="rv rv-zoom group relative aspect-[3/3.4] overflow-hidden rounded-xl shadow-soft" style="--d:220ms">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#efe3d0] via-[#cdb892] to-[#8f7655] transition duration-500 group-hover:scale-110"></div>
+        <i class="fa-solid fa-bed absolute left-1/2 top-[38%] -translate-x-1/2 -translate-y-1/2 text-5xl text-white/70"></i>
+        <div class="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/10 to-transparent"></div>
+        <figcaption class="absolute inset-x-0 bottom-0 p-3 text-[11px] font-bold text-white">Ruang Praktik Kamar Hotel</figcaption>
+      </figure>
+      <figure class="rv rv-zoom group relative aspect-[3/3.4] overflow-hidden rounded-xl bg-gradient-to-b from-[#7fb4e0] via-[#b9d8ef] to-[#4a86b8] shadow-soft" style="--d:340ms">
+        <img src="assets/cruise-ship.png" alt="" class="absolute left-1/2 top-[36%] w-[210%] max-w-none -translate-x-[58%] -translate-y-1/2 transition duration-500 group-hover:scale-105">
+        <div class="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-b from-[#3f78ad]/70 to-[#1d4a7b]"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/0 to-transparent"></div>
+        <figcaption class="absolute inset-x-0 bottom-0 p-3 text-[11px] font-bold text-white">Simulasi Kapal Pesiar</figcaption>
+      </figure>
+      <figure class="rv rv-zoom group relative aspect-[3/3.4] overflow-hidden rounded-xl shadow-soft" style="--d:460ms">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#e6eef6] via-[#c5d8ea] to-[#8fb0cf] transition duration-500 group-hover:scale-110"></div>
+        <i class="fa-solid fa-chalkboard-user absolute left-1/2 top-[38%] -translate-x-1/2 -translate-y-1/2 text-5xl text-navy-800/60"></i>
+        <div class="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/10 to-transparent"></div>
+        <figcaption class="absolute inset-x-0 bottom-0 p-3 text-[11px] font-bold text-white">Ruang Kelas Modern</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROSPEK KARIER ============ -->
+<section id="karier" class="scroll-mt-24 bg-gradient-to-r from-[#f1f6fc] via-white to-[#f1f6fc] py-10">
+  <div class="mx-auto grid max-w-6xl items-center gap-8 px-5 lg:grid-cols-[1fr_1.7fr]">
+    <div>
+      <p class="rv rv-left eyebrow mb-3 text-[11px] font-bold text-sea-600" style="--d:0ms">Prospek Karier</p>
+      <h2 class="rv rv-left text-xl font-extrabold text-navy-900 sm:text-2xl" style="--d:100ms">Karier Global Menanti Anda</h2>
+      <p class="rv rv-left mt-3 max-w-sm text-[13px] leading-relaxed text-slate-700" style="--d:200ms">Lulusan Seabar College telah bekerja di berbagai hotel berbintang dan kapal pesiar ternama di seluruh dunia.</p>
+      <a href="index.html#penyaluran" class="rv rv-left mt-5 inline-flex items-center gap-2 rounded-full border border-navy-900 px-5 py-2.5 text-xs font-semibold text-navy-900 transition hover:bg-navy-900 hover:text-white" style="--d:320ms">Lihat Penyaluran Kerja <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+    </div>
+    <div class="rv rv-right min-w-0" style="--d:150ms">
+      <div class="flex items-center gap-2">
+        <button id="cPrev" aria-label="Sebelumnya" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-navy-800 transition hover:bg-white hover:shadow-soft"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="min-w-0 flex-1 overflow-hidden py-3">
+          <div id="cTrack" class="flex transition-transform duration-700 ease-[cubic-bezier(.2,.7,.2,1)]">
+            <div class="w-1/2 shrink-0 px-1.5 lg:w-1/4"><div class="flex h-24 items-center justify-center rounded-xl bg-white shadow-soft ring-1 ring-slate-100"><span class="text-center text-lg font-extrabold tracking-wide text-red-600">VIKING<small class="block text-[8px] font-semibold text-slate-500">RIVER CRUISES</small></span></div></div>
+            <div class="w-1/2 shrink-0 px-1.5 lg:w-1/4"><div class="flex h-24 items-center justify-center rounded-xl bg-white shadow-soft ring-1 ring-slate-100"><span class="text-center text-lg font-bold tracking-wider text-blue-900">CRUISE LINE</span></div></div>
+            <div class="w-1/2 shrink-0 px-1.5 lg:w-1/4"><div class="flex h-24 items-center justify-center rounded-xl bg-white shadow-soft ring-1 ring-slate-100"><span class="text-xl font-extrabold italic text-red-600">Carnival</span></div></div>
+            <div class="w-1/2 shrink-0 px-1.5 lg:w-1/4"><div class="flex h-24 items-center justify-center rounded-xl bg-white shadow-soft ring-1 ring-slate-100"><span class="rounded bg-blue-900 px-2 py-1 text-xs font-bold text-white">Royal Caribbean</span></div></div>
+            <div class="w-1/2 shrink-0 px-1.5 lg:w-1/4"><div class="flex h-24 items-center justify-center rounded-xl bg-white shadow-soft ring-1 ring-slate-100"><span class="text-center text-[11px] font-bold text-blue-800">PT. RATU OCEANIA RAYA</span></div></div>
+            <div class="w-1/2 shrink-0 px-1.5 lg:w-1/4"><div class="flex h-24 items-center justify-center rounded-xl bg-white shadow-soft ring-1 ring-slate-100"><span class="text-lg font-extrabold text-navy-900">EQUINOX</span></div></div>
+          </div>
+        </div>
+        <button id="cNext" aria-label="Berikutnya" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-navy-800 transition hover:bg-white hover:shadow-soft"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+      <div id="cDots" class="mt-1 flex justify-center gap-2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONI ============ -->
+<section id="testimoni" class="relative scroll-mt-24 overflow-hidden bg-gradient-to-r from-[#e4eefa] via-[#eef4fb] to-[#f4f8fd] py-10">
+  <img src="assets/cruise-ship.png" alt="" aria-hidden="true" class="floaty pointer-events-none absolute -right-[4%] top-1/2 hidden w-[34%] -translate-y-1/2 opacity-55 [mask-image:linear-gradient(90deg,transparent,#000_40%)] lg:block">
+  <div class="relative mx-auto grid max-w-6xl items-center gap-8 px-5 lg:grid-cols-[1fr_1.7fr]">
+    <div>
+      <p class="rv rv-left eyebrow mb-3 text-[11px] font-bold text-sea-600" style="--d:0ms">Testimoni Alumni</p>
+      <h2 class="rv rv-left text-xl font-extrabold text-navy-900 sm:text-2xl" style="--d:100ms">Kisah Sukses Alumni Kami</h2>
+      <p class="rv rv-left mt-3 max-w-sm text-[13px] leading-relaxed text-slate-700" style="--d:200ms">Dari pelatihan di Seabar College hingga berkarier di kapal pesiar, ini adalah cerita nyata dari alumni kami.</p>
+      <a href="index.html#alumni" class="rv rv-left mt-5 inline-flex items-center gap-2 rounded-full border border-navy-900 px-5 py-2.5 text-xs font-semibold text-navy-900 transition hover:bg-navy-900 hover:text-white" style="--d:320ms">Lihat Semua Testimoni <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+    </div>
+    <div class="rv rv-right min-w-0 lg:max-w-xl" style="--d:150ms">
+      <div class="rounded-2xl bg-white/95 p-5 shadow-card ring-1 ring-white">
+        <div class="flex items-center gap-4 transition-opacity duration-500" id="tCard">
+          <img id="tAvatar" src="assets/testimonial.jpg" alt="Foto alumni Seabar College" class="h-28 w-[4.5rem] shrink-0 rounded-xl object-cover object-top shadow-soft ring-4 ring-sea-100" draggable="false">
+          <div class="min-w-0">
+            <p id="tName" class="text-sm font-bold text-navy-900"></p>
+            <p id="tRole" class="text-[11px] text-slate-500"></p>
+            <p id="tText" class="mt-2 text-xs leading-relaxed text-slate-700"></p>
+          </div>
+        </div>
+      </div>
+      <div id="tDots" class="mt-4 flex justify-center gap-2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="relative overflow-hidden bg-gradient-to-r from-navy-950 via-navy-900 to-navy-700">
+  <img src="assets/cruise-ship.png" alt="" aria-hidden="true" class="rv rv-right pointer-events-none absolute right-[22%] top-1/2 hidden w-[28%] -translate-y-1/2 opacity-90 [mask-image:linear-gradient(90deg,transparent,#000_30%)] lg:block" style="--d:200ms">
+  <svg class="pointer-events-none absolute inset-0 h-full w-full opacity-20" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="none" stroke="#fff" aria-hidden="true"><path d="M0 80C200 40 400 110 600 70S1000 30 1200 70"/><path d="M0 96C200 56 400 126 600 86S1000 46 1200 86"/></svg>
+  <div class="relative mx-auto flex max-w-6xl flex-col items-start justify-between gap-5 px-5 py-8 lg:flex-row lg:items-center">
+    <div class="max-w-xl">
+      <h2 class="rv rv-left text-lg font-extrabold leading-snug text-white sm:text-xl" style="--d:0ms">Mulai Perjalanan Karier Internasional Anda Bersama SeabarCollege</h2>
+      <p class="rv rv-left mt-2 text-xs text-white/85 sm:text-[13px]" style="--d:120ms">Pelatihan berkualitas, peluang kerja global, masa depan yang lebih baik.</p>
+    </div>
+    <a href="https://wa.me/6287782882020" target="_blank" rel="noopener" class="rv rv-right inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-xs font-bold text-navy-900 shadow-lg transition hover:-translate-y-0.5 hover:bg-gold-400" style="--d:240ms">Daftar Sekarang <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-navy-950 text-white">
+  <div class="mx-auto grid max-w-6xl gap-9 px-5 py-11 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.4fr]">
+    <div>
+      <a href="index.html" aria-label="Seabar College"><img src="assets/logo-white.png" alt="Seabar College" class="h-14 w-auto"></a>
+      <p class="mt-4 text-xs text-white/80">Your Gateway to a Global Career</p>
+    </div>
+    <div>
+      <h4 class="mb-3 text-sm font-bold">Navigasi</h4>
+      <ul class="space-y-1.5 text-xs text-white/75">
+        <li><a class="hover:text-white" href="index.html">Home</a></li><li><a class="hover:text-white" href="index.html#program">Program</a></li><li><a class="hover:text-white" href="index.html#tentang">Tentang Kami</a></li><li><a class="hover:text-white" href="index.html#alumni">Alumni</a></li><li><a class="hover:text-white" href="index.html#penyaluran">Penyaluran Kerja</a></li><li><a class="hover:text-white" href="index.html#team">Team Kami</a></li><li><a class="hover:text-white" href="index.html#berita">Berita</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="mb-3 text-sm font-bold">Program Kami</h4>
+      <ul class="space-y-1.5 text-xs text-white/75">
+        <li><a class="hover:text-white" href="program-food-beverage.html">Food &amp; Beverage</a></li><li><a class="text-white hover:text-gold-400" href="program-housekeeping.html">Housekeeping</a></li><li><a class="hover:text-white" href="program-laundry.html">Laundry</a></li><li><a class="hover:text-white" href="program-english.html">English</a></li><li><a class="hover:text-white" href="program-cook.html">Cook</a></li><li><a class="hover:text-white" href="program-barista-bar.html">Barista &amp; Bar</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="mb-3 text-sm font-bold">Kontak Kami</h4>
+      <ul class="space-y-2.5 text-xs text-white/75">
+        <li><i class="fa-solid fa-location-dot mr-2 w-4 text-gold-400"></i>Metro Indah Mall, Jl. Soekarno-Hatta No.01 Blok I, Sekejati, Buahbatu, Kota Bandung 40286</li>
+        <li><i class="fa-solid fa-phone mr-2 w-4 text-gold-400"></i><a href="tel:+6287782882020" class="hover:text-white">+62 877 8288 2020</a></li>
+        <li><i class="fa-solid fa-envelope mr-2 w-4 text-gold-400"></i>info@seabarcollege.com</li>
+      </ul>
+      <div class="mt-4 flex gap-3 text-sm">
+        <a href="#" aria-label="YouTube" class="flex h-8 w-8 items-center justify-center rounded-full bg-white text-navy-900"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" aria-label="Instagram" class="flex h-8 w-8 items-center justify-center rounded-full bg-white text-navy-900"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Facebook" class="flex h-8 w-8 items-center justify-center rounded-full bg-white text-navy-900"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="LinkedIn" class="flex h-8 w-8 items-center justify-center rounded-full bg-white text-navy-900"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="mx-auto flex max-w-6xl flex-col justify-between gap-2 px-5 py-4 text-[11px] text-white/70 sm:flex-row">
+      <p>© <span id="year">2025</span> Seabar College. All rights reserved.</p>
+      <p><a href="#" class="hover:text-white">Kebijakan Privasi</a> &nbsp;|&nbsp; <a href="#" class="hover:text-white">Syarat &amp; Ketentuan</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---------- data ----------
+  const curriculum = ["Room Cleaning & Preparation","Bed Making Standard","Linen & Amenities Management","Public Area Cleaning","Housekeeping Safety & Hygiene","Guest Room Etiquette","Chemical & Equipment Handling","Practical Training"];
+  const testimonials = [
+    { name: "Rizky Akbar", role: "Students Batch 5 · Carnival", photo: "assets/testimonial.jpg", text: "\"Di Seabar saya belajar bahwa disiplin dan sikap melayani adalah bekal utama. Sekarang saya merasakan langsung suasana kerja di kapal pesiar yang dulu hanya bisa saya bayangkan.\"" },
+    { name: "Reza", role: "Students Batch 9 · Celebrity Cruises", photo: "assets/testimonial-2.jpg", text: "\"Mulai dari menyiapkan dokumen sampai latihan wawancara, semuanya didampingi dengan sabar. Saat berkas visa disetujui, saya tahu semua usaha dan bimbingan itu terbayar.\"" },
+    { name: "Fahmi", role: "Students Batch 9 · Royal Caribbean International", photo: "assets/testimonial-3.jpg", text: "\"Latihan bahasa Inggris dan simulasi kerja membuat saya percaya diri berkomunikasi dengan tamu dan rekan dari berbagai negara. Berlayar sampai Alaska adalah pengalaman yang tidak akan saya lupakan.\"" },
+    { name: "Dicky Widiansyah", role: "Students Batch 7 · Royal Caribbean International", photo: "assets/testimonial-4.jpg", text: "\"Praktik langsung dan kebiasaan bekerja tepat waktu yang dibangun selama pelatihan sangat membantu saya beradaptasi. Dari satu pelabuhan ke pelabuhan lain, ada saja hal baru untuk dipelajari.\"" },
+    { name: "Eep Saefuloh", role: "Students Batch 7 · Norwegian Cruise Line", photo: "assets/testimonial-5.jpg", text: "\"Yang paling berkesan adalah dukungan instruktur yang tidak berhenti setelah kelas selesai. Bagi yang masih ragu, saya hanya bisa bilang: beranikan diri melangkah, bimbingannya ada.\"" },
+  ];
+
+  // ---------- kurikulum (checklist bertahap; urutan kolom kiri lalu kanan) ----------
+  const cl = document.getElementById('currList');
+  cl.innerHTML = curriculum.map((t, i) => {
+    const order = i < 4 ? i * 2 : (i - 4) * 2 + 1;           // isi grid 2 kolom: kiri = 4 pertama, kanan = 4 berikutnya
+    return `<li class="rv rv-left flex items-center gap-2.5" style="--d:${300 + i * 80}ms;order:${order}"><i class="fa-solid fa-circle-check text-base text-navy-800"></i>${t.replace('&', '&amp;')}</li>`;
+  }).join('');
+
+  // ---------- navbar & menu ----------
+  document.getElementById('menuBtn').onclick = () => document.getElementById('mobileMenu').classList.toggle('hidden');
+
+  // ---------- animasi masuk: diputar ulang tiap elemen terlihat lagi ----------
+  const toggleObs = new IntersectionObserver(es => es.forEach(e => {
+    if (e.intersectionRatio >= .25 || e.intersectionRect.height >= innerHeight * .25) e.target.classList.add('show');
+    else if (!e.isIntersecting) e.target.classList.remove('show');
+  }), { threshold: [0, .25, .5] });
+  document.querySelectorAll('.rv').forEach(el => toggleObs.observe(el));
+
+  // ---------- parallax halus pada foto hero ----------
+  (() => {
+    const el = document.getElementById('heroParallax');
+    if (!el || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const hero = document.getElementById('hero');
+    let sy = scrollY, cy = scrollY, last = 0, raf = 0, vis = true;
+    const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+    const loop = now => {
+      const dt = clamp((now - last) / 1000, 0.001, 0.05); last = now;
+      cy += (sy - cy) * (1 - Math.exp(-dt * 7));
+      const s = clamp(cy, 0, hero.offsetHeight * 1.5);
+      el.style.transform = 'translate3d(' + (-s * 0.05).toFixed(2) + 'px,' + (s * 0.18).toFixed(2) + 'px,0) scale(' + (1 + s * 0.0002).toFixed(4) + ')';
+      raf = (vis && Math.abs(sy - cy) > 0.05) ? requestAnimationFrame(loop) : 0;
+    };
+    const wake = () => { if (!raf) { last = performance.now() - 16; raf = requestAnimationFrame(loop); } };
+    new IntersectionObserver(es => { vis = es[0].isIntersecting; if (vis) wake(); }).observe(hero);
+    addEventListener('scroll', () => { sy = scrollY; wake(); }, { passive: true });
+  })();
+
+  // ---------- carousel mitra (otomatis + panah + titik) ----------
+  (() => {
+    const track = document.getElementById('cTrack'), dotsEl = document.getElementById('cDots');
+    const n = track.children.length, mq = matchMedia('(min-width:1024px)');
+    let i = 0, timer;
+    const visible = () => (mq.matches ? 4 : 2);
+    const max = () => n - visible();
+    const render = () => {
+      i = Math.min(i, max());
+      track.style.transform = 'translateX(' + (-i * 100 / visible()) + '%)';
+      dotsEl.innerHTML = Array.from({ length: max() + 1 }, (_, k) => `<button aria-label="Slide ${k + 1}" data-i="${k}" class="h-2 w-2 rounded-full transition-all ${k === i ? 'w-5 bg-navy-900' : 'bg-slate-300'}"></button>`).join('');
+    };
+    const go = k => { i = (k + max() + 1) % (max() + 1); render(); };
+    const auto = () => { clearInterval(timer); timer = setInterval(() => go(i + 1), 3200); };
+    document.getElementById('cNext').onclick = () => { go(i + 1); auto(); };
+    document.getElementById('cPrev').onclick = () => { go(i - 1); auto(); };
+    dotsEl.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { go(+b.dataset.i); auto(); } });
+    mq.addEventListener('change', render);
+    render(); auto();
+  })();
+
+  // ---------- slider testimoni ----------
+  (() => {
+    const card = document.getElementById('tCard'), dots = document.getElementById('tDots');
+    let i = 0, timer;
+    dots.innerHTML = testimonials.map((_, k) => `<button aria-label="Testimoni ${k + 1}" data-i="${k}" class="h-2 rounded-full transition-all"></button>`).join('');
+    const show = k => {
+      i = k; card.style.opacity = 0;
+      setTimeout(() => {
+        const t = testimonials[k];
+        document.getElementById('tName').textContent = t.name;
+        document.getElementById('tRole').textContent = t.role;
+        document.getElementById('tText').textContent = t.text;
+        const av = document.getElementById('tAvatar'); const src = t.photo || 'assets/testimonial.jpg'; if (!av.src.endsWith(src)) av.src = src;
+        [...dots.children].forEach((d, j) => d.className = 'h-2 rounded-full transition-all ' + (j === k ? 'w-5 bg-navy-900' : 'w-2 bg-slate-300'));
+        card.style.opacity = 1;
+      }, 250);
+    };
+    const auto = () => { clearInterval(timer); timer = setInterval(() => show((i + 1) % testimonials.length), 6000); };
+    dots.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { show(+b.dataset.i); auto(); } });
+    show(0); auto();
+  })();
+
+  // ---------- foto asli (opsional) ----------
+  [['heroPhoto', 'svg'], ['currPhoto', 'svg']].forEach(([id]) => {
+    const el = document.getElementById(id);
+    if (el && el.dataset.img) { el.style.background = "url('" + el.dataset.img + "') center/cover"; el.querySelectorAll('svg, #heroParallax').forEach(n => n.style.display = 'none'); }
+  });
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---------- navbar: dropdown Program (desktop) + accordion (mobile) ----------
+  (() => {
+    const menu = document.getElementById('progMenu'), btn = document.getElementById('progBtn');
+    const mBtn = document.getElementById('mProgBtn'), mList = document.getElementById('mProgList');
+    if (!menu) return;
+    const canHover = matchMedia('(hover: hover)').matches;
+    let t;
+    const open = () => { clearTimeout(t); menu.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); };
+    const close = () => { clearTimeout(t); menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); };
+    menu.addEventListener('mouseenter', () => { if (canHover) open(); });
+    menu.addEventListener('mouseleave', () => { if (canHover) t = setTimeout(close, 140); });
+    menu.addEventListener('focusin', open);
+    menu.addEventListener('focusout', ev => { if (!menu.contains(ev.relatedTarget)) close(); });
+    btn.addEventListener('click', ev => { if (!canHover) { ev.preventDefault(); menu.classList.contains('open') ? close() : open(); } });
+    document.addEventListener('click', ev => { if (!menu.contains(ev.target)) close(); });
+    document.addEventListener('keydown', ev => { if (ev.key === 'Escape') { close(); btn.blur(); } });
+    // tandai halaman program yang sedang dibuka
+    const here = location.pathname.split('/').pop();
+    document.querySelectorAll('.pi, .mpi').forEach(a => { if (a.getAttribute('href') === here) { a.classList.add('is-current'); a.setAttribute('aria-current', 'page'); } });
+    // accordion mobile
+    mBtn.addEventListener('click', () => {
+      const on = mList.classList.toggle('open'); mBtn.classList.toggle('open', on); mBtn.setAttribute('aria-expanded', on);
+    });
+    if (document.querySelector('.mpi.is-current')) { mList.classList.add('open'); mBtn.classList.add('open'); mBtn.setAttribute('aria-expanded', 'true'); }
+    // header jadi putih saat menu mobile terbuka (di index header awalnya transparan)
+    document.getElementById('menuBtn').addEventListener('click', () => { const open = !document.getElementById('mobileMenu').classList.contains('hidden'); document.getElementById('nav').classList.toggle('bg-white', open); });
+    // tutup menu mobile setelah memilih tautan
+    document.getElementById('mobileMenu').addEventListener('click', ev => { if (ev.target.closest('a')) document.getElementById('mobileMenu').classList.add('hidden'); });
+  })();
+</script>
+</body>
+</html>

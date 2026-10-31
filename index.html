@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seabar College – Wujudkan Karier Internasional</title>
+<link rel="icon" href="assets/logo.png">
+<meta name="description"content="Pelatihan profesional perhotelan dan kapal pesiar dengan pembelajaran praktik, pendampingan, dan peluang kerja di luar negeri.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      colors: { navy: { 950:'#071a33', 900:'#0b2545', 800:'#13315c', 700:'#1d4577' }, sea: { 600:'#0e6a9c', 500:'#1b86b8', 100:'#dcecf6', 50:'#f1f7fb' }, gold: { 500:'#d4a04a', 400:'#e1b567' } },
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'], script: ['Caveat','cursive'] },
+      boxShadow: { card: '0 10px 30px -12px rgba(11,37,69,.25)' },
+      keyframes: { float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } } },
+      animation: { float: 'float 5s ease-in-out infinite' }
+    } }
+  }
+</script>
+<style>
+  body { font-family: Inter, system-ui, sans-serif; color:#0b2545; }
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.show { opacity:1; transform:none; }
+  .eyebrow::before { content:''; display:inline-block; width:28px; height:2px; background:#d4a04a; margin-right:10px; vertical-align:middle; }
+  .hero-bg { background: radial-gradient(1200px 500px at 80% 0%, #cfe6f5 0%, rgba(207,230,245,0) 60%), linear-gradient(180deg,#eaf4fb 0%,#ffffff 100%); }
+  .ph { background-size:cover; background-position:center; }
+  .no-scrollbar::-webkit-scrollbar { display:none } .no-scrollbar { scrollbar-width:none }
+  .cloud-slow{animation:drift 90s linear infinite alternate}.cloud-fast{animation:drift 55s linear infinite alternate-reverse}
+  @keyframes drift{from{transform:translateX(-4%)}to{transform:translateX(4%)}}
+  .ship-bob{animation:bob 6s ease-in-out infinite;transform-origin:50% 90%}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-.4deg)}50%{transform:translateY(5px) rotate(.4deg)}}
+  .wave-a{animation:sway 9s ease-in-out infinite alternate}.wave-b{animation:sway 7s ease-in-out infinite alternate-reverse}
+  @keyframes sway{0%{transform:translate(-3%,0)}100%{transform:translate(3%,7px)}}
+  .foam{animation:foam 3.2s ease-in-out infinite}.foam2{animation:foam 4.4s ease-in-out infinite reverse}
+  @keyframes foam{0%,100%{transform:scaleX(.92);opacity:.55}50%{transform:scaleX(1.06);opacity:1}}
+  .spark{position:absolute;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#fff,transparent);opacity:0;animation:twinkle 3.5s ease-in-out infinite}
+  @keyframes twinkle{0%,100%{opacity:0;transform:scaleX(.4)}50%{opacity:.9;transform:scaleX(1)}}
+  .gull{animation:fly 14s ease-in-out infinite alternate}
+  @keyframes fly{from{transform:translate(-40px,6px)}to{transform:translate(60px,-10px)}}
+  .plx,#ship,.cloud-slow,.cloud-fast,.wave-a,.wave-b,.ship-bob,.gull{will-change:transform;backface-visibility:hidden}
+  @media (prefers-reduced-motion:reduce){.cloud-slow,.cloud-fast,.ship-bob,.wave-a,.wave-b,.gull,.animate-float,.foam,.foam2,.spark{animation:none!important}}
+  /* animasi masuk */
+  #home:not(.in) .a-fade,#home:not(.in) .a-sun,#home:not(.in) .a-in,#home:not(.in) .a-up,#home:not(.in) .a-pop{opacity:0;animation:none}
+  @keyframes rvUp{from{opacity:0;transform:translateY(36px)}}
+  @keyframes rvLeft{from{opacity:0;transform:translateX(-56px)}}
+  @keyframes rvZoom{from{opacity:0;transform:translateY(30px) scale(.86)}}
+  @keyframes fadeSoft{from{opacity:0}}
+  @keyframes sunIn{from{opacity:0;transform:scale(.78)}}
+  @keyframes popIn{from{opacity:0;transform:scale(.35) rotate(-14deg)}}
+  .a-fade{animation:fadeSoft 2.8s ease-out var(--d,0ms) backwards}   /* awan, burung: memudar masuk */
+  .a-sun{animation:sunIn 3s ease-out var(--d,0ms) backwards}          /* matahari: memudar + membesar */
+  .a-in{animation:fadeSoft .8s ease-out var(--d,0ms) backwards}
+  .a-up{animation:rvUp .9s cubic-bezier(.2,.7,.2,1) var(--d,0ms) backwards}
+  .a-pop{animation:popIn .7s cubic-bezier(.3,1.5,.5,1) var(--d,0ms) backwards}
+  .rv{opacity:0}
+  .rv.show{opacity:1;animation:rvUp .85s cubic-bezier(.2,.7,.2,1) var(--d,0ms) backwards}
+  .rv-left.show{animation-name:rvLeft}
+  .rv-zoom.show{animation-name:rvZoom}
+  @media (prefers-reduced-motion:reduce){.a-fade,.a-sun,.a-in,.a-up,.a-pop,.rv.show{animation:none!important}}
+  .marquee{animation:marquee var(--dur,30s) linear infinite;will-change:transform}
+  .marquee:hover{animation-play-state:paused}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(calc(-1 * var(--w,0px)))}}
+  @media (prefers-reduced-motion:reduce){.marquee{animation:none}#marqueeWrap{overflow-x:auto}}
+  /* dropdown Program */
+  #progPanel{visibility:hidden;opacity:0;transform:translate(-50%,10px);transition:opacity .22s ease,transform .22s ease,visibility .22s}
+  #progMenu.open #progPanel{visibility:visible;opacity:1;transform:translate(-50%,0)}
+  #progMenu #progBtn i{transition:transform .25s}
+  #progMenu.open #progBtn i{transform:rotate(180deg)}
+  #progMenu.open .pi{animation:rvUp .45s cubic-bezier(.2,.7,.2,1) var(--d,0ms) backwards}
+  .pi.is-current{background:#eef5fb;box-shadow:inset 0 0 0 1px #cfe3f2}
+  #mProgList{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+  #mProgList.open{grid-template-rows:1fr}
+  #mProgBtn i{transition:transform .25s}#mProgBtn.open i{transform:rotate(180deg)}
+  @media (prefers-reduced-motion:reduce){#progMenu.open .pi{animation:none!important}}
+  /* team coverflow */
+  .tm{position:absolute;left:50%;top:0;width:min(22rem,70%);height:100%;transform-origin:50% 60%;transition:transform .75s cubic-bezier(.3,.7,.2,1),opacity .5s ease,filter .6s ease;cursor:pointer}
+  .tm[data-pos="0"]{transform:translateX(-50%) scale(1);z-index:3;cursor:default}
+  .tm[data-pos="-1"]{transform:translateX(-122%) scale(.8);z-index:2;filter:brightness(.82) saturate(.85)}
+  .tm[data-pos="1"]{transform:translateX(22%) scale(.8);z-index:2;filter:brightness(.82) saturate(.85)}
+  .tm[data-pos="x"]{transform:translateX(-50%) scale(.6);opacity:0;pointer-events:none;z-index:1}
+  .tm .cap{opacity:0;transform:translateY(10px);transition:opacity .5s .2s,transform .5s .2s}
+  .tm[data-pos="0"] .cap{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.tm,.tm .cap{transition:none}}
+  /* alumni */
+  .al-bar{transform-origin:left;transform:scaleX(0)}
+  @keyframes alBar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .nav-link.active { color:#0b2545; border-bottom:2px solid #0b2545; }
+</style>
+</head>
+<body class="bg-white antialiased">
+
+<!-- ============ NAVBAR ============ -->
+<header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+  <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5">
+    <a href="#home" aria-label="Seabar College – Beranda"><img src="assets/logo.png" alt="Seabar College" class="h-12 w-auto sm:h-14"></a>
+    <nav class="hidden items-center gap-7 text-sm font-medium text-navy-800 lg:flex">
+      <a class="nav-link active pb-1" href="#home">Home</a>
+      <div id="progMenu" class="relative">
+        <a id="progBtn" class="nav-link inline-flex items-center gap-1 pb-1 hover:text-sea-600" href="#program" aria-haspopup="true" aria-expanded="false" aria-controls="progPanel">Program <i class="fa-solid fa-chevron-down text-[9px]"></i></a>
+        <div id="progPanel" class="absolute left-1/2 top-full z-50 w-[35rem] pt-4">
+          <div class="rounded-2xl bg-white p-3 shadow-[0_24px_60px_-20px_rgba(11,37,69,.35)] ring-1 ring-slate-100">
+            <p class="px-3 pb-2 pt-1 text-[10px] font-bold uppercase tracking-widest text-slate-400">Program Pelatihan</p>
+            <div class="grid grid-cols-2 gap-1">
+              <a href="program-food-beverage.html" class="pi group flex items-center gap-3 rounded-xl p-3 transition hover:bg-sea-50" style="--d:0ms"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea-100 text-base text-navy-800 transition group-hover:bg-navy-900 group-hover:text-white"><i class="fa-solid fa-bell-concierge"></i></span><span class="min-w-0"><span class="block text-[13px] font-bold text-navy-900">Food &amp; Beverage</span><span class="block text-[11px] leading-snug text-slate-500">Pelayanan makanan &amp; minuman</span></span></a>
+              <a href="program-housekeeping.html" class="pi group flex items-center gap-3 rounded-xl p-3 transition hover:bg-sea-50" style="--d:45ms"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea-100 text-base text-navy-800 transition group-hover:bg-navy-900 group-hover:text-white"><i class="fa-solid fa-bed"></i></span><span class="min-w-0"><span class="block text-[13px] font-bold text-navy-900">Housekeeping</span><span class="block text-[11px] leading-snug text-slate-500">Kebersihan &amp; penataan kamar</span></span></a>
+              <a href="program-laundry.html" class="pi group flex items-center gap-3 rounded-xl p-3 transition hover:bg-sea-50" style="--d:90ms"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea-100 text-base text-navy-800 transition group-hover:bg-navy-900 group-hover:text-white"><i class="fa-solid fa-shirt"></i></span><span class="min-w-0"><span class="block text-[13px] font-bold text-navy-900">Laundry</span><span class="block text-[11px] leading-snug text-slate-500">Pengelolaan linen &amp; pakaian</span></span></a>
+              <a href="program-english.html" class="pi group flex items-center gap-3 rounded-xl p-3 transition hover:bg-sea-50" style="--d:135ms"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea-100 text-base text-navy-800 transition group-hover:bg-navy-900 group-hover:text-white"><i class="fa-solid fa-language"></i></span><span class="min-w-0"><span class="block text-[13px] font-bold text-navy-900">English</span><span class="block text-[11px] leading-snug text-slate-500">Bahasa Inggris untuk hospitality</span></span></a>
+              <a href="program-cook.html" class="pi group flex items-center gap-3 rounded-xl p-3 transition hover:bg-sea-50" style="--d:180ms"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea-100 text-base text-navy-800 transition group-hover:bg-navy-900 group-hover:text-white"><i class="fa-solid fa-kitchen-set"></i></span><span class="min-w-0"><span class="block text-[13px] font-bold text-navy-900">Cook</span><span class="block text-[11px] leading-snug text-slate-500">Keterampilan dapur &amp; penyajian</span></span></a>
+              <a href="program-barista-bar.html" class="pi group flex items-center gap-3 rounded-xl p-3 transition hover:bg-sea-50" style="--d:225ms"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea-100 text-base text-navy-800 transition group-hover:bg-navy-900 group-hover:text-white"><i class="fa-solid fa-mug-hot"></i></span><span class="min-w-0"><span class="block text-[13px] font-bold text-navy-900">Barista &amp; Bar</span><span class="block text-[11px] leading-snug text-slate-500">Kopi, minuman &amp; bar service</span></span></a>
+            </div>
+            <a href="#program" class="mt-2 flex items-center justify-between rounded-xl bg-sea-50 px-4 py-2.5 text-xs font-semibold text-navy-800 transition hover:bg-sea-100">Lihat semua program <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+          </div>
+        </div>
+      </div>
+      <a class="nav-link pb-1 hover:text-sea-600" href="#tentang">Tentang Kami</a>
+      <a class="nav-link pb-1 hover:text-sea-600" href="#alumni">Alumni</a>
+      <a class="nav-link pb-1 hover:text-sea-600" href="#penyaluran">Penyaluran Kerja</a>
+      <a class="nav-link pb-1 hover:text-sea-600" href="#team">Team Kami</a>
+      <a class="nav-link pb-1 hover:text-sea-600" href="#berita">Berita</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <button aria-label="Cari" class="hidden p-2 text-navy-900 sm:block"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <a href="#daftar" class="hidden rounded-full bg-navy-900 px-5 py-2.5 text-xs font-semibold text-white transition hover:bg-navy-700 sm:inline-flex">Daftar Sekarang <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i></a>
+      <button id="menuBtn" aria-label="Menu" class="rounded-lg p-2 lg:hidden"><i class="fa-solid fa-bars text-xl text-navy-900"></i></button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden max-h-[calc(100svh-4.2rem)] overflow-y-auto border-t bg-white px-5 py-4 shadow-lg lg:hidden">
+    <div class="flex flex-col gap-3 text-sm font-medium">
+      <a href="#home">Home</a><div>
+        <button id="mProgBtn" type="button" class="flex w-full items-center justify-between text-left" aria-expanded="false" aria-controls="mProgList">Program <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+        <div id="mProgList"><div class="overflow-hidden"><div class="mt-2 flex flex-col gap-1 border-l-2 border-sea-100 pl-3">
+          <a href="program-food-beverage.html" class="mpi flex items-center gap-3 rounded-lg py-2 pr-2 [&.is-current]:bg-sea-50"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sea-100 text-sm text-navy-800"><i class="fa-solid fa-bell-concierge"></i></span><span><span class="block text-[13px] font-bold text-navy-900">Food &amp; Beverage</span><span class="block text-[11px] font-normal text-slate-500">Pelayanan makanan &amp; minuman</span></span></a>
+          <a href="program-housekeeping.html" class="mpi flex items-center gap-3 rounded-lg py-2 pr-2 [&.is-current]:bg-sea-50"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sea-100 text-sm text-navy-800"><i class="fa-solid fa-bed"></i></span><span><span class="block text-[13px] font-bold text-navy-900">Housekeeping</span><span class="block text-[11px] font-normal text-slate-500">Kebersihan &amp; penataan kamar</span></span></a>
+          <a href="program-laundry.html" class="mpi flex items-center gap-3 rounded-lg py-2 pr-2 [&.is-current]:bg-sea-50"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sea-100 text-sm text-navy-800"><i class="fa-solid fa-shirt"></i></span><span><span class="block text-[13px] font-bold text-navy-900">Laundry</span><span class="block text-[11px] font-normal text-slate-500">Pengelolaan linen &amp; pakaian</span></span></a>
+          <a href="program-english.html" class="mpi flex items-center gap-3 rounded-lg py-2 pr-2 [&.is-current]:bg-sea-50"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sea-100 text-sm text-navy-800"><i class="fa-solid fa-language"></i></span><span><span class="block text-[13px] font-bold text-navy-900">English</span><span class="block text-[11px] font-normal text-slate-500">Bahasa Inggris untuk hospitality</span></span></a>
+          <a href="program-cook.html" class="mpi flex items-center gap-3 rounded-lg py-2 pr-2 [&.is-current]:bg-sea-50"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sea-100 text-sm text-navy-800"><i class="fa-solid fa-kitchen-set"></i></span><span><span class="block text-[13px] font-bold text-navy-900">Cook</span><span class="block text-[11px] font-normal text-slate-500">Keterampilan dapur &amp; penyajian</span></span></a>
+          <a href="program-barista-bar.html" class="mpi flex items-center gap-3 rounded-lg py-2 pr-2 [&.is-current]:bg-sea-50"><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sea-100 text-sm text-navy-800"><i class="fa-solid fa-mug-hot"></i></span><span><span class="block text-[13px] font-bold text-navy-900">Barista &amp; Bar</span><span class="block text-[11px] font-normal text-slate-500">Kopi, minuman &amp; bar service</span></span></a>
+          <a href="#program" class="py-2 text-xs font-semibold text-sea-600">Lihat semua program <i class="fa-solid fa-arrow-right ml-1 text-[9px]"></i></a>
+        </div></div></div>
+      </div><a href="#tentang">Tentang Kami</a><a href="#alumni">Alumni</a><a href="#penyaluran">Penyaluran Kerja</a><a href="#team">Team Kami</a><a href="#berita">Berita</a>
+      <a href="#daftar" class="mt-2 rounded-full bg-navy-900 px-5 py-2.5 text-center text-white">Daftar Sekarang <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i></a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============ HERO ============ -->
+<section id="home" class="in relative mb-[10.5rem] h-[100svh] max-h-[980px] min-h-[640px] pt-20 sm:mb-[8rem] lg:mb-0">
+  <!-- ===== PARALLAX SCENE ===== -->
+  <div id="scene" class="absolute inset-0 overflow-hidden bg-gradient-to-b from-[#cfe6f6] via-[#e7f2fa] to-[#fdfaf3]" aria-hidden="true">
+    <!-- matahari -->
+    <div class="plx absolute right-[14%] top-[10%]" data-s="0.35" data-x="-0.05" data-m="8">
+      <div class="a-sun h-56 w-56 rounded-full" style="--d:150ms;background:radial-gradient(circle,#fff6d8 0%,#fde7a8 35%,rgba(253,231,168,0) 70%)"></div>
+    </div>
+    <!-- awan jauh: geser ke kiri saat scroll -->
+    <div class="plx a-fade absolute inset-x-0 top-[8%]" style="--d:500ms" data-s="0.12" data-x="-0.22" data-m="14">
+      <svg class="cloud-slow w-[200%] opacity-80" viewBox="0 0 3200 160" fill="#fff"><ellipse cx="200" cy="90" rx="150" ry="26"/><ellipse cx="300" cy="70" rx="100" ry="24"/><ellipse cx="760" cy="60" rx="170" ry="24"/><ellipse cx="880" cy="80" rx="110" ry="20"/><ellipse cx="1320" cy="100" rx="160" ry="26"/><ellipse cx="1220" cy="84" rx="90" ry="20"/><ellipse cx="1800" cy="90" rx="150" ry="26"/><ellipse cx="1900" cy="70" rx="100" ry="24"/><ellipse cx="2360" cy="60" rx="170" ry="24"/><ellipse cx="2480" cy="80" rx="110" ry="20"/><ellipse cx="2920" cy="100" rx="160" ry="26"/><ellipse cx="2820" cy="84" rx="90" ry="20"/></svg>
+    </div>
+    <!-- awan dekat: geser ke kiri lebih cepat -->
+    <div class="plx a-fade absolute inset-x-0 top-[22%]" style="--d:900ms" data-s="0.08" data-x="-0.5" data-m="26">
+      <svg class="cloud-fast w-[200%] opacity-90" viewBox="0 0 3200 160" fill="#fff"><ellipse cx="420" cy="80" rx="190" ry="30"/><ellipse cx="540" cy="64" rx="110" ry="26"/><ellipse cx="1100" cy="90" rx="210" ry="32"/><ellipse cx="1240" cy="70" rx="120" ry="24"/><ellipse cx="2020" cy="80" rx="190" ry="30"/><ellipse cx="2140" cy="64" rx="110" ry="26"/><ellipse cx="2700" cy="90" rx="210" ry="32"/><ellipse cx="2840" cy="70" rx="120" ry="24"/></svg>
+    </div>
+    <!-- burung camar: paling cepat ke kiri -->
+    <div class="plx a-fade absolute left-[26%] top-[16%] lg:left-[52%]" style="--d:1500ms" data-s="0.05" data-x="-0.8" data-m="30">
+      <svg class="gull h-8 w-24" viewBox="0 0 100 30" fill="none" stroke="#13315c" stroke-width="2" stroke-linecap="round"><path d="M4 18q10-14 20 0q10-14 20 0"/><path d="M58 10q7-9 14 0q7-9 14 0"/></svg>
+    </div>
+    <!-- badan laut (dasar air di belakang kapal) -->
+    <div class="absolute inset-x-0 bottom-0 h-[30vh] bg-gradient-to-b from-[#e3eff8] via-[#a9d3e8] to-[#4a9cc6]"></div>
+
+    <!-- kapal pesiar (asset PNG): default di kiri (di belakang teks), saat scroll berlayar ke area kosong di kanan -->
+    <div id="ship" class="absolute bottom-[27%] lg:bottom-[17%] left-0 w-[80%] will-change-transform sm:w-[92%] lg:w-[min(62%,860px)]" style="transform:translate3d(-6%,0,0);opacity:0">
+      <div class="absolute inset-x-[8%] bottom-[-6px] h-7" style="background:radial-gradient(ellipse at center,rgba(11,37,69,.38),rgba(11,37,69,0) 70%)"></div>
+      <img src="assets/cruise-ship.png" alt="" class="ship-bob w-full select-none" draggable="false">
+      <!-- buih / jejak air di garis air -->
+      <div class="foam absolute inset-x-[6%] -bottom-2 h-5" style="background:radial-gradient(ellipse at center,rgba(255,255,255,.95),rgba(255,255,255,0) 70%)"></div>
+      <div class="foam2 absolute inset-x-0 -bottom-4 h-6" style="background:radial-gradient(ellipse at center,rgba(255,255,255,.6),rgba(255,255,255,0) 70%)"></div>
+    </div>
+
+    <!-- kilau air -->
+    <div id="sparkles" class="pointer-events-none absolute inset-x-0 bottom-0 h-[26vh]"></div>
+
+    <!-- ombak belakang -->
+    <div class="plx absolute inset-x-0 bottom-0 h-[29vh]" data-s="0.14" data-m="18">
+      <svg class="wave-a -ml-[10%] h-full w-[120%]" viewBox="0 0 1440 220" preserveAspectRatio="none"><path fill="#7fb9d8" fill-opacity=".75" d="M0 90C160 40 320 40 480 80s320 60 480 20 340-50 480 0V220H0Z"/></svg>
+    </div>
+    <!-- ombak tengah -->
+    <div class="plx absolute inset-x-0 bottom-0 h-[23vh]" data-s="0.06" data-m="30">
+      <svg class="wave-b -ml-[10%] h-full w-[120%]" viewBox="0 0 1440 180" preserveAspectRatio="none"><path fill="#2f8fbd" fill-opacity=".92" d="M0 70C200 120 360 110 540 70s340-30 520 10 280 20 380-20V180H0Z"/><path fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="3" d="M0 70C200 120 360 110 540 70s340-30 520 10 280 20 380-20"/></svg>
+    </div>
+    <!-- ombak depan -->
+    <div class="plx absolute inset-x-0 bottom-0 h-[15vh]" data-s="0" data-m="46">
+      <svg class="wave-a -ml-[10%] h-full w-[120%]" viewBox="0 0 1440 140" preserveAspectRatio="none"><path fill="#13315c" d="M0 60C180 20 340 20 520 56s360 50 540 12 270-30 380 0V140H0Z"/><path fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="3" d="M0 60C180 20 340 20 520 56s360 50 540 12 270-30 380 0"/></svg>
+    </div>
+
+    <!-- tulisan script -->
+    <p class="plx font-script absolute right-[5%] top-[13%] z-10 [@media(max-height:700px)]:max-lg:hidden -rotate-6 text-2xl leading-7 text-navy-800 sm:text-3xl lg:top-[26%] lg:right-[6%] lg:text-4xl lg:leading-9" data-s="-0.05" data-m="-22"><span class="block animate-float">Learn Today,<br>Work Globally</span></p>
+  </div>
+
+  <!-- ===== KONTEN ===== -->
+  <div class="relative z-10 mx-auto flex h-full max-w-7xl items-center px-5 pb-[26vh] lg:pb-[12vh]">
+    <div id="heroText" class="plx w-fit [text-shadow:0_0_22px_rgba(255,255,255,.95),0_0_6px_rgba(255,255,255,.8)]" data-s="-0.12" data-m="-6">
+      <p class="eyebrow mb-4 text-xs font-bold uppercase tracking-widest text-gold-500">Your Gateway to a Global Career</p>
+      <h1 class="text-[1.75rem] font-extrabold leading-tight text-navy-900 min-[420px]:text-4xl sm:text-5xl">Wujudkan Karier<br>Internasional Bersama<br><span class="text-sea-600">Seabar College</span></h1>
+      <p class="mt-5 max-w-md text-sm leading-relaxed text-slate-700">Pelatihan profesional di bidang perhotelan dan kapal pesiar dengan pembelajaran praktik, pendampingan, dan peluang kerja di luar negeri.</p>
+      <div class="mt-7 flex flex-wrap gap-3 [text-shadow:none]">
+        <a href="#daftar" class="rounded-full bg-navy-900 px-4 py-2.5 text-xs font-semibold text-white shadow-card transition hover:-translate-y-0.5 hover:bg-navy-700 sm:px-6 sm:py-3">Daftar Sekarang <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i></a>
+        <a href="#tentang" class="rounded-full border border-navy-900 bg-white/80 px-4 py-2.5 text-xs sm:px-6 sm:py-3 font-semibold text-navy-900 transition hover:bg-navy-900 hover:text-white"><i class="fa-solid fa-circle-play mr-1.5"></i>Tonton Profil Kami</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- feature strip (setengah masuk hero, setengah ke bawah) -->
+  <div class="absolute inset-x-0 bottom-0 z-20 translate-y-1/2 px-5">
+    <div style="--d:900ms" class="a-up mx-auto grid max-w-6xl grid-cols-2 gap-1 rounded-3xl bg-white p-3 shadow-card sm:grid-cols-3 sm:p-4 lg:grid-cols-5 lg:gap-0 lg:divide-x lg:divide-slate-200 lg:p-6">
+      <div class="a-in px-1.5 py-2 text-center lg:px-3 lg:py-0" style="--d:1250ms"><div class="a-pop mb-1 text-xl lg:mb-2 lg:text-2xl text-sea-600" style="--d:1350ms"><i class="fa-solid fa-graduation-cap"></i></div><h3 class="text-[13px] font-bold leading-tight lg:text-sm">Program Berkualitas</h3><p class="mt-0.5 text-[11px] leading-snug text-slate-500 lg:text-xs">Standar internasional</p></div>
+      <div class="a-in px-1.5 py-2 text-center lg:px-3 lg:py-0" style="--d:1380ms"><div class="a-pop mb-1 text-xl lg:mb-2 lg:text-2xl text-sea-600" style="--d:1480ms"><i class="fa-solid fa-globe"></i></div><h3 class="text-[13px] font-bold leading-tight lg:text-sm">Peluang Karier Global</h3><p class="mt-0.5 text-[11px] leading-snug text-slate-500 lg:text-xs">Bekerja di kapal pesiar dan industri hospitality</p></div>
+      <div class="a-in px-1.5 py-2 text-center lg:px-3 lg:py-0" style="--d:1510ms"><div class="a-pop mb-1 text-xl lg:mb-2 lg:text-2xl text-sea-600" style="--d:1610ms"><i class="fa-solid fa-users"></i></div><h3 class="text-[13px] font-bold leading-tight lg:text-sm">Instruktur Profesional</h3><p class="mt-0.5 text-[11px] leading-snug text-slate-500 lg:text-xs">Didukung tenaga ahli berpengalaman</p></div>
+      <div class="a-in px-1.5 py-2 text-center lg:px-3 lg:py-0" style="--d:1640ms"><div class="a-pop mb-1 text-xl lg:mb-2 lg:text-2xl text-sea-600" style="--d:1740ms"><i class="fa-solid fa-briefcase"></i></div><h3 class="text-[13px] font-bold leading-tight lg:text-sm">Fasilitas Lengkap</h3><p class="mt-0.5 text-[11px] leading-snug text-slate-500 lg:text-xs">Ruang praktik modern</p></div>
+      <div class="a-in col-span-2 px-1.5 py-2 text-center sm:col-span-1 lg:px-3 lg:py-0" style="--d:1770ms"><div class="a-pop mb-1 text-xl lg:mb-2 lg:text-2xl text-sea-600" style="--d:1870ms"><i class="fa-solid fa-handshake"></i></div><h3 class="text-[13px] font-bold leading-tight lg:text-sm">Jaringan Luas</h3><p class="mt-0.5 text-[11px] leading-snug text-slate-500 lg:text-xs">Mitra industri terpercaya</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROGRAM ============ -->
+<section id="program" class="mx-auto max-w-7xl px-5 pb-16 pt-12 lg:pt-32">
+  <div class="grid items-center gap-10 lg:grid-cols-[1fr_1.7fr]">
+    <div>
+      <p class="rv rv-left eyebrow mb-3 text-xs font-bold text-slate-700" style="--d:0ms">Program Pelatihan</p>
+      <h2 class="rv rv-left text-3xl font-extrabold leading-tight sm:text-4xl" style="--d:120ms">Program Unggulan<br>untuk Masa Depan Anda</h2>
+      <p class="rv rv-left mt-4 max-w-sm text-sm text-slate-600" style="--d:240ms">Pilih program pelatihan terbaik yang sesuai dengan minat dan tujuan karier internasional Anda.</p>
+      <a href="#daftar" style="--d:360ms" class="rv rv-left mt-6 inline-flex rounded-full bg-navy-900 px-6 py-3 text-xs font-semibold text-white transition hover:bg-navy-700">Lihat Semua Program <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i></a>
+    </div>
+    <div id="programGrid" class="grid grid-cols-2 gap-4 sm:grid-cols-3"></div>
+  </div>
+</section>
+
+<!-- ============ TENTANG ============ -->
+<section id="tentang" class="relative overflow-hidden bg-gradient-to-r from-white via-[#f6f8fc] to-[#e7edf6]">
+  <!-- peta dunia samar di kanan -->
+  <i class="fa-solid fa-earth-americas pointer-events-none absolute -right-16 top-1/2 -translate-y-1/2 text-[22rem] leading-none text-[#c9d5e8]/50" aria-hidden="true"></i>
+
+  <!-- FOTO: matahari terbenam di dek kapal pesiar (ganti dengan foto asli lewat background-image pada #aboutPhoto) -->
+  <div id="aboutPhoto" class="rv rv-left relative h-60 overflow-hidden sm:h-72 lg:absolute lg:inset-y-0 lg:left-0 lg:h-auto lg:w-[43%] lg:[clip-path:polygon(0_0,100%_0,87%_100%,0_100%)]" data-img="">
+    <svg class="absolute inset-0 h-full w-full" viewBox="0 0 430 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="aSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a95c8"/><stop offset=".35" stop-color="#c7a1bd"/><stop offset=".68" stop-color="#f3a987"/><stop offset="1" stop-color="#f9d3a2"/></linearGradient>
+        <linearGradient id="aSea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4b74b0"/><stop offset=".5" stop-color="#27487f"/><stop offset="1" stop-color="#1a3366"/></linearGradient>
+        <radialGradient id="aSun"><stop offset="0" stop-color="#fff4d0"/><stop offset=".25" stop-color="#ffc58a" stop-opacity=".85"/><stop offset="1" stop-color="#ff9a6a" stop-opacity="0"/></radialGradient>
+        <linearGradient id="aRef" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe2b0" stop-opacity=".9"/><stop offset="1" stop-color="#ffe2b0" stop-opacity="0"/></linearGradient>
+        <linearGradient id="aWall" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e8eef5"/><stop offset="1" stop-color="#9fb2c8"/></linearGradient>
+        <linearGradient id="aDeck" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8ea6c2"/><stop offset="1" stop-color="#c3d3e4"/></linearGradient>
+      </defs>
+      <rect width="430" height="175" fill="url(#aSky)"/>
+      <g fill="#ffd0b8" opacity=".55"><ellipse cx="220" cy="62" rx="90" ry="9"/><ellipse cx="300" cy="90" rx="70" ry="7"/><ellipse cx="170" cy="110" rx="60" ry="6"/><ellipse cx="350" cy="50" rx="60" ry="6"/></g>
+      <rect y="175" width="430" height="125" fill="url(#aSea)"/>
+      <circle cx="292" cy="175" r="46" fill="url(#aSun)"/><circle cx="292" cy="173" r="4" fill="#fff8e1"/>
+      <rect x="284" y="176" width="16" height="124" fill="url(#aRef)"/>
+      <g stroke="#ffd9a8" stroke-opacity=".5" stroke-width="1.5" stroke-linecap="round"><path d="M262 190h60M270 202h44M258 216h70M274 232h36M262 250h58"/></g>
+      <!-- dinding kapal + balkon (kiri) -->
+      <polygon points="0,0 118,0 190,182 0,300" fill="url(#aWall)"/>
+      <g stroke="#52698a" stroke-opacity=".45" stroke-width="2"><path d="M0 40L132 40M0 78L150 78M0 116L168 116M0 154L184 154M0 192L150 232"/></g>
+      <g fill="#6f8db3" opacity=".55"><polygon points="0,46 128,46 134,66 0,66"/><polygon points="0,84 146,84 152,104 0,104"/><polygon points="0,122 164,122 170,142 0,142"/><polygon points="0,160 178,160 184,176 0,176"/></g>
+      <g fill="#ffd9a0" opacity=".9"><rect x="14" y="30" width="5" height="5" rx="1"/><rect x="60" y="68" width="5" height="5" rx="1"/><rect x="30" y="106" width="5" height="5" rx="1"/></g>
+      <!-- lantai dek -->
+      <polygon points="150,300 214,178 246,178 330,300" fill="url(#aDeck)"/>
+      <polygon points="214,300 228,178 236,178 262,300" fill="#d7e3f0" opacity=".55"/>
+      <!-- pegangan kayu (kiri) + pagar putih (kanan) -->
+      <path d="M0 292L206 177" stroke="#c98d52" stroke-width="7" stroke-linecap="round"/>
+      <path d="M0 292L206 177" stroke="#f2c48c" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+      <g stroke="#e6ebf3" stroke-width="2"><path d="M330 300L250 178"/><path d="M345 300L256 190"/><path d="M356 270L270 195"/></g>
+      <g stroke="#fff" stroke-opacity=".8" stroke-width="2"><path d="M300 262v26M284 238v24M270 216v20M259 196v18"/></g>
+    </svg>
+    <button id="playBtn" aria-label="Putar video profil" class="absolute left-[46%] top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-gold-500 shadow-xl transition hover:scale-110 sm:h-16 sm:w-16">
+      <i class="fa-solid fa-play ml-1 text-xl"></i>
+    </button>
+  </div>
+
+  <!-- KONTEN -->
+  <div class="relative grid gap-8 px-5 py-12 lg:ml-[45%] lg:grid-cols-[1.7fr_1fr] lg:gap-8 lg:px-0 lg:py-16 lg:pr-8 xl:pr-[max(2rem,calc((100vw-1280px)/2))]">
+    <div>
+      <p class="rv rv-left eyebrow mb-3 text-[11px] font-bold text-slate-600" style="--d:0ms">Tentang Seabar College</p>
+      <h2 class="rv rv-left text-3xl font-extrabold leading-tight text-navy-900 sm:text-[2.1rem] lg:text-[1.85rem] xl:text-[2.1rem]" style="--d:120ms">Mencetak Profesional<br>untuk Dunia Hospitality</h2>
+      <p class="rv rv-left mt-4 max-w-md text-sm leading-relaxed text-slate-600" style="--d:240ms">Seabar College berkomitmen untuk memberikan pendidikan dan pelatihan berkualitas, membekali peserta dengan keterampilan dan pengalaman nyata di industri global.</p>
+      <a href="#tentang" style="--d:360ms" class="rv rv-left mt-6 inline-flex items-center gap-2 rounded-full bg-navy-900 px-6 py-3 text-xs font-semibold text-white shadow-card transition hover:bg-navy-700">Kenal Lebih Dekat <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+    </div>
+    <ul class="space-y-5 lg:border-l lg:border-slate-300/70 lg:pl-8">
+      <li class="rv flex items-start gap-4" style="--d:200ms"><span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-lg text-navy-800 shadow-[0_4px_14px_rgba(11,37,69,.12)]"><i class="fa-solid fa-gear"></i></span><div><p class="text-sm font-bold text-navy-900">Pengalaman</p><p class="text-xs leading-relaxed text-slate-500">Lebih dari 10 tahun melatih tenaga profesional</p></div></li>
+      <li class="rv flex items-start gap-4" style="--d:320ms"><span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-lg text-navy-800 shadow-[0_4px_14px_rgba(11,37,69,.12)]"><i class="fa-solid fa-globe"></i></span><div><p class="text-sm font-bold text-navy-900">Jaringan Global</p><p class="text-xs leading-relaxed text-slate-500">Bersama mitra industri internasional</p></div></li>
+      <li class="rv flex items-start gap-4" style="--d:440ms"><span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-lg text-navy-800 shadow-[0_4px_14px_rgba(11,37,69,.12)]"><i class="fa-solid fa-file-circle-check"></i></span><div><p class="text-sm font-bold text-navy-900">Kesempatan Karier</p><p class="text-xs leading-relaxed text-slate-500">Bekerja di kapal pesiar dan hotel ternama</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ BAND ============ -->
+<section class="relative overflow-hidden bg-[linear-gradient(95deg,#0a3254_0%,#0b4568_42%,#0e5f84_100%)] text-white lg:rounded-tr-[3rem]">
+  <!-- aset dekoratif: siluet kapal + garis ombak samar di kanan -->
+  <img src="assets/cruise-ship.png" alt="" aria-hidden="true" draggable="false" class="pointer-events-none absolute -right-[4%] top-1/2 hidden w-[38%] -translate-y-[46%] select-none opacity-[.16] [filter:grayscale(1)_brightness(1.8)_contrast(.9)] [mask-image:linear-gradient(90deg,transparent,#000_35%)] lg:block">
+  <svg class="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-[55%] lg:block" viewBox="0 0 600 120" preserveAspectRatio="none" fill="none" stroke="#fff" stroke-opacity=".11" stroke-width="1" aria-hidden="true">
+    <path d="M0 70C90 40 160 100 260 70S430 30 600 62"/><path d="M0 84C100 54 170 112 270 84S440 46 600 78"/><path d="M0 98C110 68 180 124 280 98S450 62 600 94"/><path d="M0 56C80 28 150 86 250 56S420 16 600 48"/>
+  </svg>
+  <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/[.04] to-transparent"></div>
+
+  <div class="relative mx-auto grid max-w-7xl items-center gap-5 px-5 py-6 lg:grid-cols-[1.45fr_1fr_1fr_1fr] lg:gap-0 lg:py-7">
+    <h3 class="rv text-[1.05rem] font-bold leading-snug lg:pr-6" style="--d:0ms"><span class="bg-gradient-to-r from-[#f6e8bd] to-[#d8b56c] bg-clip-text text-transparent">Bersama Seabar College,</span><br>Raih Masa Depan yang Lebih Baik</h3>
+    <div class="rv flex items-center gap-4 lg:border-l lg:border-[#d8b56c]/50 lg:pl-8" style="--d:150ms"><i class="fa-solid fa-users w-10 text-center text-[1.7rem]"></i><div><p class="text-sm font-bold">Ratusan</p><p class="text-xs text-white/70">Alumni Sukses</p></div></div>
+    <div class="rv flex items-center gap-4 lg:border-l lg:border-[#d8b56c]/50 lg:pl-8" style="--d:280ms"><i class="fa-solid fa-briefcase w-10 text-center text-[1.7rem]"></i><div><p class="text-sm font-bold">Bekerja di</p><p class="text-xs text-white/70">Kapal Pesiar &amp; Hotel</p></div></div>
+    <div class="rv flex items-center gap-4 lg:border-l lg:border-[#d8b56c]/50 lg:pl-8" style="--d:410ms"><i class="fa-solid fa-handshake w-10 text-center text-[1.7rem]"></i><div><p class="text-sm font-bold">Mitra Industri</p><p class="text-xs text-white/70">Internasional</p></div></div>
+  </div>
+</section>
+
+<!-- ============ ALUMNI ============ -->
+<section id="alumni" class="mx-auto max-w-7xl px-5 py-16">
+  <div class="grid items-center gap-8 lg:grid-cols-[0.8fr_2.2fr]">
+    <div class="reveal">
+      <p class="eyebrow mb-3 text-xs font-bold text-slate-600">Cerita Alumni</p>
+      <h2 class="text-3xl font-extrabold leading-tight">Langkah Nyata Menuju<br>Karier Internasional</h2>
+      <p class="mt-4 max-w-xs text-sm text-slate-600">Dengarkan pengalaman inspiratif dari alumni kami yang kini telah bekerja di berbagai kapal pesiar dunia.</p>
+      <a href="#alumni" class="mt-6 inline-flex rounded-full border border-navy-900 px-6 py-3 text-xs font-semibold text-navy-900 transition hover:bg-navy-900 hover:text-white">Lihat Cerita Alumni <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i></a>
+    </div>
+    <div class="reveal min-w-0">
+      <!-- kontrol di atas kartu -->
+      <div class="mb-4 flex items-center gap-4">
+        <div class="h-0.5 flex-1 overflow-hidden rounded bg-slate-200"><div id="alBar" class="al-bar h-full w-full bg-navy-900"></div></div>
+        <div class="flex items-center gap-3">
+          <button id="alPrev" aria-label="Alumni sebelumnya" class="flex h-10 w-10 items-center justify-center rounded-full bg-white text-navy-900 shadow-soft ring-1 ring-slate-100 transition hover:bg-navy-900 hover:text-white"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+          <p class="min-w-[3.5rem] text-center text-xs font-semibold tracking-wider text-slate-400"><b id="alNow" class="text-navy-900">01</b> / <span id="alTotal">05</span></p>
+          <button id="alNext" aria-label="Alumni berikutnya" class="flex h-10 w-10 items-center justify-center rounded-full bg-white text-navy-900 shadow-soft ring-1 ring-slate-100 transition hover:bg-navy-900 hover:text-white"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+        </div>
+      </div>
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-[#f6f9fd] to-[#e9f1fa] p-6 shadow-card ring-1 ring-sea-100 sm:p-8">
+        <i class="fa-solid fa-quote-right pointer-events-none absolute right-5 top-3 text-[7rem] leading-none text-sea-100/80" aria-hidden="true"></i>
+        <div class="relative flex flex-col items-center gap-6 md:flex-row md:items-center md:gap-9">
+          <figure class="order-1 w-44 shrink-0 md:order-2 md:w-52">
+            <div class="aspect-[9/16] overflow-hidden rounded-2xl bg-sea-100 shadow-card ring-4 ring-white">
+              <img id="alPhoto" src="assets/testimonial.jpg" alt="Foto alumni Seabar College" class="h-full w-full object-cover object-top transition-all duration-500" draggable="false">
+            </div>
+          </figure>
+          <div id="alBody" class="order-2 min-w-0 flex-1 transition-all duration-500 md:order-1">
+            <p class="text-2xl leading-none text-sea-600"><i class="fa-solid fa-quote-left"></i></p>
+            <p id="alQuote" class="mt-3 text-[15px] leading-relaxed text-slate-700 sm:text-base"></p>
+            <span class="mt-6 block h-0.5 w-14 rounded bg-gold-500"></span>
+            <p id="alName" class="mt-4 text-lg font-extrabold text-navy-900"></p>
+            <div class="mt-2.5 flex flex-wrap gap-2 text-[11px] font-semibold">
+              <span id="alBatch" class="inline-flex items-center gap-1.5 rounded-full bg-navy-900 px-3 py-1 text-white"><i class="fa-solid fa-graduation-cap text-[10px]"></i><span></span></span>
+              <span id="alCompany" class="inline-flex items-center gap-1.5 rounded-full bg-sea-100 px-3 py-1 text-navy-800"><i class="fa-solid fa-ship text-[10px]"></i><span></span></span>
+              <span id="alPlace" class="hidden items-center gap-1.5 rounded-full bg-white px-3 py-1 text-slate-600 ring-1 ring-slate-200"><i class="fa-solid fa-location-dot text-[10px] text-gold-500"></i><span></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MITRA ============ -->
+<section id="penyaluran" class="bg-sea-50">
+  <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-3 px-5 py-8 md:flex-nowrap">
+    <div class="reveal w-full shrink-0 md:w-56">
+      <p class="eyebrow mb-1 text-xs font-bold text-slate-700">Mitra Industri Kami</p>
+      <p class="text-xs text-slate-500">Bersama perusahaan terkemuka di dunia</p>
+    </div>
+    <div id="marqueeWrap" class="relative w-full min-w-0 overflow-hidden md:w-auto md:flex-1 [mask-image:linear-gradient(90deg,transparent,#000_7%,#000_93%,transparent)]">
+      <div id="partners" class="marquee flex w-max items-center py-2">
+        <span class="mr-14 shrink-0 text-xl font-extrabold tracking-wide text-red-600">VIKING<small class="block text-[9px] font-semibold text-slate-500">RIVER CRUISES</small></span>
+        <span class="mr-14 shrink-0 text-xl font-bold tracking-wider text-blue-900">CRUISS LINE</span>
+        <span class="mr-14 shrink-0 text-xl font-extrabold italic text-red-600">Carnival</span>
+        <span class="mr-14 shrink-0 rounded bg-blue-900 px-2 py-1 text-sm font-bold text-white">Royal Caribbean</span>
+        <span class="mr-14 shrink-0 text-xs font-bold text-blue-800">PT. RATU OCEANIA RAYA</span>
+        <span class="mr-14 shrink-0 text-xl font-extrabold text-navy-900">EQUINOX</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEAM KAMI ============ -->
+<section id="team" class="relative scroll-mt-20 overflow-hidden bg-gradient-to-r from-white via-[#f6f8fc] to-[#e7edf6] py-14 lg:py-20">
+  <!-- peta dunia samar + gelombang laut (sama dengan section Tentang & Hero) -->
+  <i class="fa-solid fa-earth-americas pointer-events-none absolute -right-20 top-1/2 -translate-y-1/2 text-[24rem] leading-none text-[#c9d5e8]/45" aria-hidden="true"></i>
+  <svg class="pointer-events-none absolute inset-x-0 bottom-0 h-24 w-full lg:h-32" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="none" aria-hidden="true">
+    <path d="M0 70C200 20 360 100 560 60S900 10 1200 56V120H0Z" fill="#cfe1f3" fill-opacity=".45"/>
+    <path d="M0 90C220 50 380 116 600 80S940 36 1200 76" stroke="#fff" stroke-opacity=".9" stroke-width="2"/>
+  </svg>
+
+  <div class="relative mx-auto grid max-w-7xl items-center gap-10 px-5 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
+    <!-- KIRI: carousel coverflow -->
+    <div class="rv rv-left relative min-w-0">
+      <div id="teamStage" class="relative mx-auto h-[22rem] w-full max-w-[36rem] overflow-hidden sm:h-[26rem]" aria-roledescription="carousel" aria-label="Team Seabar College"></div>
+      <button id="tPrevBtn" aria-label="Anggota sebelumnya" class="absolute left-1 top-[11rem] z-20 flex h-11 w-11 items-center justify-center rounded-full bg-white text-navy-900 shadow-card transition hover:scale-110 hover:bg-navy-900 hover:text-white sm:left-3 sm:top-[13rem] lg:left-0"><i class="fa-solid fa-chevron-left text-sm"></i></button>
+      <button id="tNextBtn" aria-label="Anggota berikutnya" class="absolute right-1 top-[11rem] z-20 flex h-11 w-11 items-center justify-center rounded-full bg-white text-navy-900 shadow-card transition hover:scale-110 hover:bg-navy-900 hover:text-white sm:right-3 sm:top-[13rem] lg:right-0"><i class="fa-solid fa-chevron-right text-sm"></i></button>
+      <div class="mt-5 flex items-center justify-center gap-5">
+        <p class="text-xs font-semibold tracking-wider text-slate-400"><b id="tNow" class="text-navy-900">01</b> / <span id="tTotal">06</span></p>
+        <div id="tDotsTeam" class="flex gap-2"></div>
+      </div>
+    </div>
+
+    <!-- KANAN: teks -->
+    <div class="min-w-0">
+      <p class="rv rv-left eyebrow mb-3 text-[11px] font-bold text-slate-600" style="--d:0ms">People Behind Seabar</p>
+      <h2 class="rv rv-left text-3xl font-extrabold leading-tight text-navy-900 sm:text-[2.3rem]" style="--d:120ms">Meet the People<br>Who Shape Your Future</h2>
+      <p class="rv rv-left mt-4 max-w-lg text-sm leading-relaxed text-slate-600" style="--d:240ms">Di balik setiap perjalanan dan pencapaian Seabar College, terdapat tim yang berdedikasi untuk memberikan pendidikan, pelatihan, serta pendampingan terbaik. Kami percaya bahwa setiap individu memiliki potensi untuk berkembang dan meraih peluang karier di industri hospitality internasional.</p>
+
+      <ul class="mt-8 grid max-w-2xl gap-5 sm:grid-cols-3 sm:gap-0">
+        <li class="rv flex items-center gap-3 sm:pr-4" style="--d:360ms"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-base text-navy-800 shadow-[0_4px_14px_rgba(11,37,69,.12)] xl:h-12 xl:w-12 xl:text-lg"><i class="fa-solid fa-users"></i></span><p class="min-w-0 text-[11px] font-bold leading-snug text-navy-900 xl:text-xs">Experienced<br>&amp; Dedicated</p></li>
+        <li class="rv flex items-center gap-3 sm:border-l sm:border-slate-300/70 sm:px-4" style="--d:480ms"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-base text-navy-800 shadow-[0_4px_14px_rgba(11,37,69,.12)] xl:h-12 xl:w-12 xl:text-lg"><i class="fa-solid fa-graduation-cap"></i></span><p class="min-w-0 text-[11px] font-bold leading-snug text-navy-900 xl:text-xs">Professional<br>Training</p></li>
+        <li class="rv flex items-center gap-3 sm:border-l sm:border-slate-300/70 sm:pl-4" style="--d:600ms"><span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-base text-navy-800 shadow-[0_4px_14px_rgba(11,37,69,.12)] xl:h-12 xl:w-12 xl:text-lg"><i class="fa-solid fa-chart-line"></i></span><p class="min-w-0 text-[11px] font-bold leading-snug text-navy-900 xl:text-xs">Career<br>Guidance</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BERITA ============ -->
+<section id="berita" class="mx-auto max-w-7xl px-5 py-16">
+  <div class="grid items-center gap-8 lg:grid-cols-[0.8fr_2.2fr]">
+    <div class="reveal">
+      <p class="eyebrow mb-3 text-xs font-bold text-slate-600">Berita &amp; Informasi</p>
+      <h2 class="text-2xl font-extrabold leading-tight">Update Terbaru<br>Seputar Seabar College</h2>
+      <a href="#berita" class="mt-5 inline-flex rounded-full border border-navy-900 px-5 py-2 text-xs font-semibold text-navy-900 transition hover:bg-navy-900 hover:text-white">Lihat Semua Berita</a>
+    </div>
+    <div id="newsGrid" class="grid gap-4 md:grid-cols-3"></div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section id="daftar" class="relative overflow-hidden bg-gradient-to-r from-navy-950 via-navy-900 to-navy-700 py-12 text-white">
+  <div class="mx-auto flex max-w-4xl flex-col items-center gap-5 px-5 text-center">
+    <h2 class="reveal text-2xl font-extrabold">Siap Memulai Perjalanan Karier Anda?</h2>
+    <p class="reveal max-w-xl text-sm text-white/80">Daftar sekarang dan wujudkan impian bekerja di kancah internasional bersama Seabar College.</p>
+    <a href="https://wa.me/6287782882020" target="_blank" rel="noopener" class="reveal rounded-full bg-gold-400 px-8 py-3 text-xs font-bold text-navy-900 shadow-lg transition hover:-translate-y-0.5 hover:bg-gold-500">Daftar Sekarang <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i></a>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer id="kontak" class="bg-navy-950 text-white">
+  <div class="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.2fr_1fr_1.4fr_auto]">
+    <a href="#home" aria-label="Seabar College – Beranda"><img src="assets/logo-white.png" alt="Seabar College" class="h-14 w-auto"></a>
+    <div>
+      <h4 class="mb-3 text-sm font-bold">Navigasi</h4>
+      <ul class="space-y-1.5 text-xs text-white/75">
+        <li><a class="hover:text-white" href="#home">Home</a></li><li><a class="hover:text-white" href="#program">Program</a></li><li><a class="hover:text-white" href="#tentang">Tentang Kami</a></li>
+        <li><a class="hover:text-white" href="#alumni">Alumni</a></li><li><a class="hover:text-white" href="#penyaluran">Penyaluran Kerja</a></li><li><a class="hover:text-white" href="#berita">Berita</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="mb-3 text-sm font-bold">Kontak Kami</h4>
+      <ul class="space-y-2 text-xs text-white/75">
+        <li><i class="fa-solid fa-location-dot mr-2 w-4 text-gold-400"></i>Metro Indah Mall, Jl. Soekarno-Hatta No.01 Blok I, Sekejati, Buahbatu, Kota Bandung 40286</li>
+        <li><i class="fa-solid fa-phone mr-2 w-4 text-gold-400"></i> <a href="https://wa.me/6287782882020" class="hover:text-white">+62 877 8288 2020</a></li>
+        <li><i class="fa-solid fa-envelope mr-2 w-4 text-gold-400"></i> info@seabarcollege.com <span class="text-white/40">(placeholder dari desain)</span></li>
+      </ul>
+    </div>
+    <div class="flex gap-3 text-xs">
+      <a href="#" aria-label="YouTube" class="flex h-8 w-8 items-center justify-center rounded-full bg-white text-navy-900"><i class="fa-brands fa-youtube"></i></a>
+      <a href="#" aria-label="Instagram" class="flex h-8 w-8 items-center justify-center rounded-full bg-white text-navy-900"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook" class="flex h-8 w-8 items-center justify-center rounded-full bg-white text-navy-900"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#" aria-label="LinkedIn" class="flex h-8 w-8 items-center justify-center rounded-full bg-white text-navy-900"><i class="fa-brands fa-linkedin-in"></i></a>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="mx-auto flex max-w-7xl flex-col justify-between gap-2 px-5 py-4 text-[11px] text-white/70 sm:flex-row">
+      <p>© <span id="year">2025</span> Seabar College. All rights reserved.</p>
+      <p><a href="#" class="hover:text-white">Kebijakan Privasi</a> &nbsp;|&nbsp; <a href="#" class="hover:text-white">Syarat &amp; Ketentuan</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---------- data ----------
+  const programs = [
+    { name: 'Food & Beverage', href: 'program-food-beverage.html', from: 'from-amber-700/80', to: 'to-amber-300/60' },
+    { name: 'Housekeeping', href: 'program-housekeeping.html', from: 'from-stone-600/80', to: 'to-stone-300/60' },
+    { name: 'Laundry', href: 'program-laundry.html', from: 'from-slate-600/80', to: 'to-sky-200/70' },
+    { name: 'English', href: 'program-english.html', from: 'from-sky-700/80',   to: 'to-sky-300/60' },
+    { name: 'Cook', href: 'program-cook.html', from: 'from-orange-900/80',to: 'to-amber-400/50' },
+    { name: 'Barista & Bar', href: 'program-barista-bar.html', from: 'from-yellow-900/80',to: 'to-orange-300/50' },
+  ];
+  const news = [
+    { tag: 'Pengumuman', title: 'Penerimaan Siswa Baru Tahun 2026/2027', date: '25 Okt 2025', from: 'from-amber-200', to: 'to-sea-500/40' },
+    { tag: 'Kegiatan',   title: 'Pelatihan Hospitality Bersama Mitra Industri', date: '18 Okt 2025', from: 'from-sea-100', to: 'to-navy-700/60' },
+    { tag: 'Tips Karier',title: 'Tips Sukses Bekerja di Kapal Pesiar', date: '12 Okt 2025', from: 'from-sky-200', to: 'to-navy-800/70' },
+  ];
+
+  // ---------- render ----------
+  document.getElementById('programGrid').innerHTML = programs.map((p, i) => `
+    <a href="${p.href || '#daftar'}" style="--d:${200 + i * 110}ms" class="rv rv-zoom ph group relative flex h-32 items-end overflow-hidden rounded-2xl bg-gradient-to-br ${p.from} ${p.to} p-3 shadow-card transition duration-300 hover:-translate-y-1" data-img="">
+      <span class="relative z-10 pr-8 text-[13px] font-bold leading-tight text-white drop-shadow sm:text-sm">${p.name}</span>
+      <span class="absolute bottom-3 right-3 z-10 flex h-7 w-7 items-center justify-center rounded-full border border-white/80 text-xs text-white transition group-hover:bg-white group-hover:text-navy-900"><i class="fa-solid fa-arrow-right"></i></span>
+      <span class="absolute inset-0 bg-gradient-to-t from-navy-950/70 to-transparent"></span>
+    </a>`).join('');
+
+  document.getElementById('newsGrid').innerHTML = news.map(n => `
+    <article class="reveal flex gap-3 rounded-2xl bg-slate-50 p-3 shadow-card transition hover:-translate-y-1">
+      <div class="ph h-24 w-24 shrink-0 rounded-xl bg-gradient-to-br ${n.from} ${n.to}" data-img=""></div>
+      <div class="min-w-0">
+        <span class="rounded-full bg-gold-400/30 px-2 py-0.5 text-[10px] font-bold text-gold-500">${n.tag}</span>
+        <h3 class="mt-1 text-sm font-bold leading-snug">${n.title}</h3>
+        <p class="mt-1 text-[11px] text-slate-400">${n.date}</p>
+        <a href="#berita" class="mt-1 inline-block text-[11px] font-semibold text-navy-800 hover:text-sea-600">Baca Selengkapnya <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i></a>
+      </div>
+    </article>`).join('');
+
+  // ---------- alumni: kartu testimoni + deretan foto, otomatis lewat progress bar ----------
+  (() => {
+    // nama, batch, dan perusahaan diambil dari poster alumni; kutipan = draf copywriting (perlu persetujuan alumni)
+    const alumni = [
+          {
+                "name": "Rizky Akbar",
+                "batch": "Students Batch 5",
+                "company": "Carnival",
+                "place": "",
+                "photo": "assets/testimonial.jpg",
+                "text": "Di Seabar saya belajar bahwa disiplin dan sikap melayani adalah bekal utama. Sekarang saya merasakan langsung suasana kerja di kapal pesiar yang dulu hanya bisa saya bayangkan."
+          },
+          {
+                "name": "Reza",
+                "batch": "Students Batch 9",
+                "company": "Celebrity Cruises",
+                "place": "",
+                "photo": "assets/testimonial-2.jpg",
+                "text": "Mulai dari menyiapkan dokumen sampai latihan wawancara, semuanya didampingi dengan sabar. Saat berkas visa disetujui, saya tahu semua usaha dan bimbingan itu terbayar."
+          },
+          {
+                "name": "Fahmi",
+                "batch": "Students Batch 9",
+                "company": "Royal Caribbean International",
+                "place": "Juneau, Alaska",
+                "photo": "assets/testimonial-3.jpg",
+                "text": "Latihan bahasa Inggris dan simulasi kerja membuat saya percaya diri berkomunikasi dengan tamu dan rekan dari berbagai negara. Berlayar sampai Alaska adalah pengalaman yang tidak akan saya lupakan."
+          },
+          {
+                "name": "Dicky Widiansyah",
+                "batch": "Students Batch 7",
+                "company": "Royal Caribbean International",
+                "place": "Port Roatan",
+                "photo": "assets/testimonial-4.jpg",
+                "text": "Praktik langsung dan kebiasaan bekerja tepat waktu yang dibangun selama pelatihan sangat membantu saya beradaptasi. Dari satu pelabuhan ke pelabuhan lain, ada saja hal baru untuk dipelajari."
+          },
+          {
+                "name": "Eep Saefuloh",
+                "batch": "Students Batch 7",
+                "company": "Norwegian Cruise Line",
+                "place": "",
+                "photo": "assets/testimonial-5.jpg",
+                "text": "Yang paling berkesan adalah dukungan instruktur yang tidak berhenti setelah kelas selesai. Bagi yang masih ragu, saya hanya bisa bilang: beranikan diri melangkah, bimbingannya ada."
+          }
+    ];
+    const $ = id => document.getElementById(id);
+    const photo = $('alPhoto'), body = $('alBody'), bar = $('alBar');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const n = alumni.length, pad = v => String(v).padStart(2, '0');
+    $('alTotal').textContent = pad(n);
+    let cur = -1, hover = false;
+    const restartBar = () => {
+      bar.style.animation = 'none'; void bar.offsetWidth;
+      if (!reduce) bar.style.animation = 'alBar 7s linear forwards';
+      bar.style.animationPlayState = hover ? 'paused' : 'running';
+    };
+    const fill = a => {
+      photo.src = a.photo; photo.alt = 'Foto alumni ' + a.name;
+      $('alQuote').textContent = a.text; $('alName').textContent = a.name;
+      $('alBatch').lastElementChild.textContent = a.batch; $('alCompany').lastElementChild.textContent = a.company;
+      const pl = $('alPlace'); pl.lastElementChild.textContent = a.place; pl.classList.toggle('hidden', !a.place); pl.classList.toggle('inline-flex', !!a.place);
+    };
+    const show = i => {
+      i = ((i % n) + n) % n; if (i === cur) return;
+      const first = cur < 0; cur = i;
+      $('alNow').textContent = pad(i + 1);
+      if (first) { fill(alumni[i]); restartBar(); return; }
+      body.style.opacity = 0; body.style.transform = 'translateY(10px)'; photo.style.opacity = 0; photo.style.transform = 'scale(1.04)';
+      setTimeout(() => {
+        fill(alumni[i]);
+        body.style.opacity = 1; body.style.transform = 'none'; photo.style.opacity = 1; photo.style.transform = 'none';
+        restartBar();
+      }, 320);
+    };
+    $('alNext').onclick = () => show(cur + 1);
+    $('alPrev').onclick = () => show(cur - 1);
+    bar.addEventListener('animationend', () => show(cur + 1));
+    const card = body.closest('.reveal');
+    card.addEventListener('mouseenter', () => { hover = true; bar.style.animationPlayState = 'paused'; });
+    card.addEventListener('mouseleave', () => { hover = false; bar.style.animationPlayState = 'running'; });
+    show(0);
+  })();
+
+  // ---------- mitra: marquee otomatis kanan -> kiri, loop mulus ----------
+  (() => {
+    const track = document.getElementById('partners');
+    const wrap = document.getElementById('marqueeWrap');
+    const originals = [...track.children];
+    const SPEED = 50; // px per detik
+    const build = () => {
+      [...track.children].forEach(el => { if (el.dataset.clone) el.remove(); });
+      const setW = originals.reduce((w, el) => w + el.offsetWidth + parseFloat(getComputedStyle(el).marginRight), 0);
+      const copies = Math.ceil(wrap.clientWidth / setW) + 1;          // cukup untuk menutup lebar + 1 set cadangan
+      for (let i = 0; i < copies; i++) originals.forEach(el => { const c = el.cloneNode(true); c.dataset.clone = '1'; c.setAttribute('aria-hidden', 'true'); track.appendChild(c); });
+      track.style.setProperty('--w', setW + 'px');
+      track.style.setProperty('--dur', (setW / SPEED).toFixed(1) + 's');
+    };
+    build();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
+    let t; addEventListener('resize', () => { clearTimeout(t); t = setTimeout(build, 200); });
+  })();
+
+  // ---------- navbar: shadow on scroll, mobile menu, active link ----------
+  const nav = document.getElementById('nav');
+  const setNav = () => ['bg-white/95', 'shadow-md', 'backdrop-blur'].forEach(c => nav.classList.toggle(c, scrollY > 10));
+  setNav(); addEventListener('scroll', setNav, { passive: true });
+  const mm = document.getElementById('mobileMenu');
+  document.getElementById('menuBtn').onclick = () => mm.classList.toggle('hidden');
+  mm.addEventListener('click', e => { if (e.target.tagName === 'A') mm.classList.add('hidden'); });
+
+  const links = [...document.querySelectorAll('.nav-link')];
+  const secs = links.map(l => document.querySelector(l.getAttribute('href')));
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { const i = secs.indexOf(e.target); links.forEach((l, k) => l.classList.toggle('active', k === i)); }
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  secs.forEach(s => s && spy.observe(s));
+
+  // ---------- scroll reveal ----------
+  // animasi masuk diulang tiap elemen terlihat lagi: .show dipasang saat terlihat, dilepas setelah keluar layar sepenuhnya
+  const toggleObs = new IntersectionObserver(es => es.forEach(e => {
+    const px = e.intersectionRect.height;
+    if (e.intersectionRatio >= .25 || px >= innerHeight * .25) e.target.classList.add('show');
+    else if (!e.isIntersecting) e.target.classList.remove('show');
+  }), { threshold: [0, .25, .5] });
+  document.querySelectorAll('.rv').forEach(el => toggleObs.observe(el));
+  document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = (i % 6) * 60 + 'ms'; toggleObs.observe(el); });
+
+  // hero: animasi pembuka (matahari, awan, strip) diputar ulang saat hero kembali terlihat
+  (() => {
+    const hero = document.getElementById('home');
+    new IntersectionObserver(es => es.forEach(e => {
+      if (e.intersectionRatio >= .35) hero.classList.add('in');
+      else if (e.intersectionRatio < .05) hero.classList.remove('in');
+    }), { threshold: [0, .05, .35] }).observe(hero);
+  })();
+
+  // ---------- apply real photos when data-img is filled ----------
+  document.querySelectorAll('.ph[data-img]').forEach(el => {
+    const src = el.dataset.img;
+    if (src) el.style.backgroundImage = `url('${src}'), ${getComputedStyle(el).backgroundImage}`;
+  });
+
+  // ---------- parallax hero: scroll (smoothed) + mouse + kapal ----------
+  (() => {
+    const hero = document.getElementById('home');
+    const scene = document.getElementById('scene');
+    const ship = document.getElementById('ship');
+    const text = document.getElementById('heroText');
+    const layers = [...hero.querySelectorAll('.plx')].map(el => ({ el, s: +el.dataset.s || 0, x: +el.dataset.x || 0, m: +el.dataset.m || 0 }));
+
+    // kilau air acak
+    const sp = document.getElementById('sparkles');
+    for (let i = 0; i < 26; i++) {
+      const d = document.createElement('i'); d.className = 'spark';
+      d.style.left = (Math.random() * 96) + '%'; d.style.bottom = (8 + Math.random() * 78) + '%';
+      d.style.width = (24 + Math.random() * 56) + 'px'; d.style.animationDelay = (Math.random() * 3.5) + 's';
+      d.style.animationDuration = (2.6 + Math.random() * 2.4) + 's'; sp.appendChild(d);
+    }
+
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const INTRO_MS = 2800, INTRO_DELAY = 350;
+    const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+    const easeInOut = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const easeOut = t => 1 - Math.pow(1 - t, 2.2);
+
+    let tx = 0, ty = 0, cx = 0, cy = 0, sy = scrollY, csy = scrollY;
+    let intro = reduce ? 1 : 0, introStart = null, last = 0, raf = 0, visible = true;
+    let W = 0, sw = 0, hh = 1, restX = 0;
+
+    const measure = () => {
+      W = scene.clientWidth; sw = ship.offsetWidth; hh = hero.offsetHeight;
+      if (W >= 1024) {
+        const textRight = text.getBoundingClientRect().right - scene.getBoundingClientRect().left + cx * 6;
+        restX = Math.min(textRight + 28 - 0.09 * sw, W - 0.99 * sw);
+      } else restX = (W - sw) / 2;
+    };
+
+    const loop = (now) => {
+      const dt = clamp((now - last) / 1000, 0.001, 0.05); last = now;   // dt tidak boleh negatif (timestamp rAF bisa < performance.now())
+      csy += (sy - csy) * (1 - Math.exp(-dt * 7));            // scroll diperhalus, independen dari FPS
+      cx += (tx - cx) * (1 - Math.exp(-dt * 5));
+      cy += (ty - cy) * (1 - Math.exp(-dt * 5));
+      const scr = clamp(csy, 0, hh);
+
+      if (!reduce) layers.forEach(l => {
+        l.el.style.transform = 'translate3d(' + (cx * l.m + scr * l.x).toFixed(2) + 'px,' + (scr * l.s + cy * l.m * 0.5).toFixed(2) + 'px,0)';
+      });
+
+      if (intro < 1) {
+        if (introStart === null) introStart = now + INTRO_DELAY;
+        intro = clamp((now - introStart) / INTRO_MS, 0, 1);
+      }
+      const se = reduce ? 0 : easeOut(clamp(csy / (hh * 0.5), 0, 1));
+      const startX = W >= 1024 ? -0.06 * W : -sw * 0.95, exitX = W + 0.04 * sw;
+      const x = startX + (restX - startX) * easeInOut(intro) + (exitX - restX) * se + (reduce ? 0 : cx * 40);
+      const y = -se * 10 + (reduce ? 0 : cy * 20);
+      ship.style.opacity = reduce ? 1 : clamp(intro * 5, 0, 1).toFixed(2);
+      ship.style.transform = 'translate3d(' + x.toFixed(2) + 'px,' + y.toFixed(2) + 'px,0)';
+
+      const moving = intro < 1 || Math.abs(sy - csy) > 0.05 || Math.abs(tx - cx) > 0.0005 || Math.abs(ty - cy) > 0.0005;
+      raf = (moving && visible) ? requestAnimationFrame(loop) : 0;
+    };
+    const wake = () => { if (!raf) { last = performance.now() - 16; raf = requestAnimationFrame(loop); } };
+
+    measure();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measure(); wake(); });
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) wake(); }).observe(hero);
+    addEventListener('resize', () => { measure(); wake(); });
+    if (!reduce) {
+      addEventListener('scroll', () => { sy = scrollY; wake(); }, { passive: true });
+      hero.addEventListener('mousemove', e => { const r = hero.getBoundingClientRect(); tx = clamp((e.clientX - r.left) / r.width - 0.5, -0.5, 0.5); ty = clamp((e.clientY - r.top) / r.height - 0.5, -0.5, 0.5); wake(); });
+      hero.addEventListener('mouseleave', () => { tx = 0; ty = 0; wake(); });
+    }
+    loop(performance.now());
+  })();
+
+  // ---------- misc ----------
+  (() => { const ph = document.getElementById('aboutPhoto'); if (ph && ph.dataset.img) { ph.style.background = "url('" + ph.dataset.img + "') center/cover"; ph.querySelector('svg').style.display = 'none'; } })();
+  document.getElementById('playBtn').onclick = () => alert('Tempelkan URL video profil Seabar College di sini.');
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---------- navbar: dropdown Program (desktop) + accordion (mobile) ----------
+  (() => {
+    const menu = document.getElementById('progMenu'), btn = document.getElementById('progBtn');
+    const mBtn = document.getElementById('mProgBtn'), mList = document.getElementById('mProgList');
+    if (!menu) return;
+    const canHover = matchMedia('(hover: hover)').matches;
+    let t;
+    const open = () => { clearTimeout(t); menu.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); };
+    const close = () => { clearTimeout(t); menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); };
+    menu.addEventListener('mouseenter', () => { if (canHover) open(); });
+    menu.addEventListener('mouseleave', () => { if (canHover) t = setTimeout(close, 140); });
+    menu.addEventListener('focusin', open);
+    menu.addEventListener('focusout', ev => { if (!menu.contains(ev.relatedTarget)) close(); });
+    btn.addEventListener('click', ev => { if (!canHover) { ev.preventDefault(); menu.classList.contains('open') ? close() : open(); } });
+    document.addEventListener('click', ev => { if (!menu.contains(ev.target)) close(); });
+    document.addEventListener('keydown', ev => { if (ev.key === 'Escape') { close(); btn.blur(); } });
+    // tandai halaman program yang sedang dibuka
+    const here = location.pathname.split('/').pop();
+    document.querySelectorAll('.pi, .mpi').forEach(a => { if (a.getAttribute('href') === here) { a.classList.add('is-current'); a.setAttribute('aria-current', 'page'); } });
+    // accordion mobile
+    mBtn.addEventListener('click', () => {
+      const on = mList.classList.toggle('open'); mBtn.classList.toggle('open', on); mBtn.setAttribute('aria-expanded', on);
+    });
+    if (document.querySelector('.mpi.is-current')) { mList.classList.add('open'); mBtn.classList.add('open'); mBtn.setAttribute('aria-expanded', 'true'); }
+    // header jadi putih saat menu mobile terbuka (di index header awalnya transparan)
+    document.getElementById('menuBtn').addEventListener('click', () => { const open = !document.getElementById('mobileMenu').classList.contains('hidden'); document.getElementById('nav').classList.toggle('bg-white', open); });
+    // tutup menu mobile setelah memilih tautan
+    document.getElementById('mobileMenu').addEventListener('click', ev => { if (ev.target.closest('a')) document.getElementById('mobileMenu').classList.add('hidden'); });
+  })();
+
+  // ---------- team: carousel coverflow ----------
+  (() => {
+    const stage = document.getElementById('teamStage');
+    if (!stage) return;
+    // data diambil dari halaman tim lama seabarcollege.com; isi 'photo' dengan path foto untuk menggantikan siluet
+    const team = [
+      { name: 'Gugum Gumilar', role: 'Direktur Utama', photo: '' },
+      { name: 'Meggi Diah Mediarti', role: 'Direktur Keuangan', photo: '' },
+      { name: 'Endi Trigono', role: 'Kepala Lembaga', photo: '' },
+      { name: 'Cucu Cahya Mulyati', role: 'Administrasi', photo: '' },
+      { name: 'Diffani Alung Putri', role: 'Accounting', photo: '' },
+      { name: 'Rizky Khafi Zaeni Putra', role: 'Digital Marketing', photo: '' },
+    ];
+    const n = team.length, pad = v => String(v).padStart(2, '0');
+    const initials = nm => nm.split(' ').map(w => w[0]).slice(0, 2).join('');
+    stage.innerHTML = team.map((m, i) => `
+      <article class="tm" data-i="${i}" aria-label="${m.name}, ${m.role}">
+        <div class="relative h-full w-full overflow-hidden rounded-[1.6rem] bg-gradient-to-b from-[#1b4d86] via-[#12376a] to-[#0a2142] shadow-[0_24px_50px_-18px_rgba(11,37,69,.55)] ring-1 ring-white/10">
+          <img src="assets/logo-white.png" alt="" aria-hidden="true" class="absolute left-1/2 top-6 w-28 -translate-x-1/2 opacity-[.13]" draggable="false">
+          ${m.photo ? `<img src="${m.photo}" alt="${m.name}" class="absolute inset-0 h-full w-full object-cover" draggable="false">` : `
+          <svg class="absolute inset-x-0 bottom-0 h-[82%] w-full" viewBox="0 0 300 330" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+            <defs><linearGradient id="sh${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe0f2"/><stop offset="1" stop-color="#8fb1d6"/></linearGradient></defs>
+            <path d="M10 330C10 250 70 214 150 214S290 250 290 330Z" fill="url(#sh${i})" opacity=".92"/>
+            <path d="M118 214L150 262L182 214" fill="#fff" opacity=".9"/><path d="M150 262L138 330H162Z" fill="#d4a04a"/>
+            <circle cx="150" cy="130" r="58" fill="url(#sh${i})"/>
+          </svg>
+          <span class="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-sm font-bold text-white ring-1 ring-white/30">${initials(m.name)}</span>`}
+          <div class="cap absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#06142b] via-[#06142b]/80 to-transparent px-5 pb-5 pt-14">
+            <div class="flex items-stretch gap-3"><span class="w-0.5 rounded bg-gold-500"></span><div><p class="text-base font-bold leading-tight text-white">${m.name}</p><p class="mt-1 text-xs text-white/80">${m.role}</p></div></div>
+          </div>
+        </div>
+      </article>`).join('');
+    const cards = [...stage.children];
+    const dotsEl = document.getElementById('tDotsTeam');
+    dotsEl.innerHTML = team.map((_, i) => `<button aria-label="Anggota ${i + 1}" data-i="${i}" class="h-2 w-2 rounded-full bg-slate-300 transition-all"></button>`).join('');
+    document.getElementById('tTotal').textContent = pad(n);
+    let cur = 0, timer;
+    const render = () => {
+      cards.forEach((c, i) => {
+        let o = ((i - cur) % n + n) % n; if (o > n / 2) o -= n;
+        c.dataset.pos = o === 0 ? '0' : (o === -1 ? '-1' : (o === 1 ? '1' : 'x'));
+        c.setAttribute('aria-hidden', o === 0 ? 'false' : 'true');
+      });
+      document.getElementById('tNow').textContent = pad(cur + 1);
+      [...dotsEl.children].forEach((d, i) => d.className = 'h-2 rounded-full transition-all ' + (i === cur ? 'w-5 bg-navy-900' : 'w-2 bg-slate-300'));
+    };
+    const go = k => { cur = ((k % n) + n) % n; render(); };
+    const auto = () => { clearInterval(timer); timer = setInterval(() => go(cur + 1), 5000); };
+    document.getElementById('tNextBtn').onclick = () => { go(cur + 1); auto(); };
+    document.getElementById('tPrevBtn').onclick = () => { go(cur - 1); auto(); };
+    dotsEl.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { go(+b.dataset.i); auto(); } });
+    stage.addEventListener('click', e => { const c = e.target.closest('.tm'); if (c && c.dataset.pos !== '0') { go(+c.dataset.i); auto(); } });
+    stage.parentElement.addEventListener('mouseenter', () => clearInterval(timer));
+    stage.parentElement.addEventListener('mouseleave', auto);
+    let x0 = null;
+    stage.addEventListener('pointerdown', e => { x0 = e.clientX; });
+    stage.addEventListener('pointerup', e => { if (x0 !== null && Math.abs(e.clientX - x0) > 40) { go(cur + (e.clientX < x0 ? 1 : -1)); auto(); } x0 = null; });
+    stage.style.touchAction = 'pan-y';
+    render(); auto();
+  })();
+</script>
+</body>
+</html>

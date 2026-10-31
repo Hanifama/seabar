@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seabar CMS – Dashboard</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../assets/logo.png">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      colors: { navy: { 950:'#071a33', 900:'#0b2545', 800:'#13315c', 700:'#1d4577' }, sea: { 700:'#0b5a86', 600:'#0e6a9c', 500:'#1b86b8', 100:'#dcecf6', 50:'#f1f7fb' }, gold: { 500:'#d4a04a', 400:'#e1b567' } },
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+      boxShadow: { card: '0 10px 30px -12px rgba(11,37,69,.25)', soft: '0 4px 18px -8px rgba(11,37,69,.18)' }
+    } }
+  }
+</script>
+<style type="text/tailwindcss">
+  @layer components {
+    .lbl { @apply mb-1.5 block text-xs font-semibold text-slate-600; }
+    .inp { @apply block w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-navy-900 outline-none transition placeholder:text-slate-400 focus:border-sea-500 focus:ring-4 focus:ring-sea-500/15; }
+    textarea.inp { @apply min-h-[5.5rem] resize-y leading-relaxed; }
+    .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-semibold transition disabled:cursor-not-allowed disabled:opacity-50; }
+    .btn-primary { @apply bg-navy-900 text-white shadow-soft hover:bg-navy-700; }
+    .btn-sea { @apply bg-sea-600 text-white shadow-soft hover:bg-sea-700; }
+    .btn-ghost { @apply border border-slate-200 bg-white text-navy-800 hover:border-sea-500 hover:text-sea-600; }
+    .btn-danger { @apply border border-red-200 bg-white text-red-600 hover:bg-red-50; }
+    .btn-icon { @apply flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-xs text-slate-500 transition hover:border-sea-500 hover:text-sea-600; }
+    .card { @apply rounded-2xl bg-white shadow-soft ring-1 ring-slate-100; }
+    .chip { @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold; }
+    .nav-item { @apply flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium text-white/70 transition hover:bg-white/10 hover:text-white; }
+    .nav-item.on { @apply bg-white/[.12] text-white shadow-[inset_3px_0_0_#d4a04a]; }
+    .tab { @apply whitespace-nowrap border-b-2 border-transparent px-4 py-3 text-xs font-semibold text-slate-500 transition hover:text-navy-900; }
+    .tab.on { @apply border-navy-900 text-navy-900; }
+  }
+  @keyframes viewIn { from { opacity: 0; transform: translateY(10px); } }
+  .view-in { animation: viewIn .35s cubic-bezier(.2,.7,.2,1); }
+  @keyframes toastIn { from { opacity: 0; transform: translateY(14px) scale(.96); } }
+  .toast-in { animation: toastIn .3s ease; }
+  @keyframes pop { from { opacity: 0; transform: translateY(18px) scale(.97); } }
+  .pop-in { animation: pop .28s cubic-bezier(.2,.8,.2,1); }
+  .no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { scrollbar-width: none; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; } ::-webkit-scrollbar-thumb { background: #c7d3e3; border-radius: 8px; }
+  .rich:empty:before { content: attr(data-ph); color: #94a3b8; }
+  .rich ul { list-style: disc; padding-left: 1.25rem; } .rich ol { list-style: decimal; padding-left: 1.25rem; } .rich a { color: #0e6a9c; text-decoration: underline; }
+  [data-sortable-over] { outline: 2px dashed #1b86b8; outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { .view-in, .toast-in, .pop-in { animation: none; } }
+</style>
+</head>
+<body class="bg-[#f3f6fb] font-sans text-navy-900 antialiased">
+
+<!-- ======================= LOGIN ======================= -->
+<div id="login" class="hidden"><div class="min-h-screen lg:grid lg:grid-cols-[1.1fr_1fr]">
+  <div class="relative hidden overflow-hidden bg-gradient-to-br from-navy-950 via-navy-900 to-[#0f4a78] p-12 text-white lg:flex lg:flex-col lg:justify-between">
+    <img src="../assets/logo-white.png" alt="Seabar College" class="h-14 w-auto self-start">
+    <div class="relative z-10 max-w-md">
+      <p class="mb-3 text-[11px] font-bold uppercase tracking-[.3em] text-gold-400">Content Management System</p>
+      <h1 class="text-4xl font-extrabold leading-tight">Kelola seluruh konten<br>website Seabar College</h1>
+      <p class="mt-4 text-sm leading-relaxed text-white/75">Ubah hero, program, alumni, team, berita, hingga pengaturan situs dalam satu dashboard. Simpan sebagai draft, tinjau, lalu publikasikan.</p>
+      <ul class="mt-8 space-y-3 text-sm text-white/85">
+        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-400"></i>Alur draft → publikasi yang aman</li>
+        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-400"></i>Media library &amp; unggah foto</li>
+        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-400"></i>Pipeline pendaftar &amp; peran pengguna</li>
+      </ul>
+    </div>
+    <img src="../assets/cruise-ship.png" alt="" aria-hidden="true" class="pointer-events-none absolute -bottom-6 -right-24 w-[75%] opacity-25 [mask-image:linear-gradient(90deg,transparent,#000_30%)]">
+    <p class="relative z-10 text-xs text-white/50">Prototype dashboard · data tersimpan di browser (localStorage)</p>
+  </div>
+  <div class="flex min-h-screen items-center justify-center px-6 py-10">
+    <form id="loginForm" class="card w-full max-w-md p-8">
+      <img src="../assets/logo.png" alt="Seabar College" class="mb-6 h-12 w-auto lg:hidden">
+      <h2 class="text-2xl font-extrabold">Masuk ke dashboard</h2>
+      <p class="mt-1 text-sm text-slate-500">Gunakan akun demo di bawah untuk mencoba prototype.</p>
+      <div class="mt-6 space-y-4">
+        <label class="block"><span class="lbl">Email</span><input id="lEmail" type="email" class="inp" value="admin@seabarcollege.com" autocomplete="username"></label>
+        <label class="block"><span class="lbl">Kata sandi</span>
+          <div class="relative"><input id="lPass" type="password" class="inp pr-11" value="admin123" autocomplete="current-password"><button type="button" id="lEye" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-navy-900" aria-label="Tampilkan kata sandi"><i class="fa-regular fa-eye"></i></button></div>
+        </label>
+        <p id="lErr" class="hidden rounded-lg bg-red-50 px-3 py-2 text-xs text-red-600"></p>
+        <button class="btn btn-primary w-full py-3 text-sm" type="submit">Masuk <i class="fa-solid fa-arrow-right text-[10px]"></i></button>
+      </div>
+      <p class="mt-5 rounded-xl bg-sea-50 px-4 py-3 text-xs leading-relaxed text-slate-600"><b class="text-navy-800">Akun demo:</b> admin@seabarcollege.com / admin123 (sudah terisi). Ini prototype tanpa server — tidak ada autentikasi sungguhan.</p>
+    </form>
+  </div>
+</div>
+
+</div>
+<!-- ======================= APP ======================= -->
+<div id="app" class="hidden">
+  <div id="scrim" class="fixed inset-0 z-40 hidden bg-navy-950/55 backdrop-blur-sm lg:hidden"></div>
+
+  <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-72 -translate-x-full flex-col bg-gradient-to-b from-navy-950 via-navy-900 to-[#0c2f57] text-white transition-transform duration-300 lg:translate-x-0" aria-label="Navigasi utama">
+    <div class="flex h-16 shrink-0 items-center justify-between px-5">
+      <a href="#/dashboard" class="flex items-center gap-2.5"><img src="../assets/logo-white.png" alt="Seabar College" class="h-10 w-auto"><span class="rounded-md bg-gold-500/20 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-widest text-gold-400">CMS</span></a>
+      <button id="sbClose" class="rounded-lg p-2 text-white/70 hover:bg-white/10 lg:hidden" aria-label="Tutup menu"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <nav id="nav" class="no-scrollbar flex-1 space-y-5 overflow-y-auto px-3 pb-4 pt-2"></nav>
+    <div class="m-3 rounded-2xl bg-white/[.08] p-4 ring-1 ring-white/10 [@media(max-height:820px)]:hidden">
+      <div class="flex items-center justify-between text-[11px] font-semibold uppercase tracking-wider text-white/60"><span>Status konten</span><span id="sbDot" class="h-2 w-2 rounded-full bg-emerald-400"></span></div>
+      <p id="sbStatus" class="mt-2 text-sm font-semibold">Semua tersinkron</p>
+      <a href="../index.html" target="_blank" rel="noopener" class="mt-3 flex items-center justify-center gap-2 rounded-xl bg-white/10 py-2 text-xs font-semibold transition hover:bg-white/20"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>Lihat website</a>
+    </div>
+  </aside>
+
+  <div class="lg:pl-72">
+    <header class="sticky top-0 z-30 border-b border-slate-200/70 bg-white/85 backdrop-blur">
+      <div class="flex h-16 items-center gap-3 px-4 sm:px-6 lg:px-8">
+        <button id="sbOpen" class="btn-icon lg:hidden" aria-label="Buka menu"><i class="fa-solid fa-bars"></i></button>
+        <div class="min-w-0 flex-1 lg:flex-none lg:w-72">
+          <div class="relative">
+            <i class="fa-solid fa-magnifying-glass pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i>
+            <input id="gSearch" class="inp !rounded-full !bg-slate-50 !py-2 pl-9 text-xs" placeholder="Cari program, alumni, berita… ( / )" autocomplete="off">
+            <div id="gResults" class="absolute left-0 right-0 top-full mt-2 hidden max-h-80 overflow-y-auto rounded-2xl bg-white p-2 shadow-card ring-1 ring-slate-100"></div>
+          </div>
+        </div>
+        <div class="ml-auto flex items-center gap-2">
+          <a href="../index.html" target="_blank" rel="noopener" class="btn btn-ghost hidden sm:inline-flex"><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>Lihat Website</a>
+          <button id="btnPublish" class="btn btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i><span class="hidden sm:inline">Publikasikan</span><span id="pubBadge" class="hidden rounded-full bg-gold-500 px-1.5 text-[10px] text-navy-950">0</span></button>
+          <div class="relative">
+            <button id="btnBell" class="btn-icon relative" aria-label="Notifikasi"><i class="fa-regular fa-bell"></i><span id="bellDot" class="absolute right-1.5 top-1.5 hidden h-2 w-2 rounded-full bg-red-500"></span></button>
+            <div id="bellMenu" class="absolute right-0 top-full mt-2 hidden w-72 rounded-2xl bg-white p-2 shadow-card ring-1 ring-slate-100"></div>
+          </div>
+          <div class="relative">
+            <button id="btnUser" class="flex items-center gap-2 rounded-full border border-slate-200 bg-white py-1 pl-1 pr-3 transition hover:border-sea-500"><span id="uAvatar" class="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-sea-500 to-navy-800 text-xs font-bold text-white">A</span><span class="hidden text-left sm:block"><span id="uName" class="block text-xs font-bold leading-tight">Admin</span><span id="uRole" class="block text-[10px] leading-tight text-slate-500">Super Admin</span></span><i class="fa-solid fa-chevron-down hidden text-[9px] text-slate-400 sm:block"></i></button>
+            <div id="userMenu" class="absolute right-0 top-full mt-2 hidden w-64 rounded-2xl bg-white p-2 shadow-card ring-1 ring-slate-100"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main id="view" class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8"></main>
+    <footer class="px-4 pb-8 text-center text-[11px] text-slate-400 sm:px-6 lg:px-8">Seabar CMS · prototype · data tersimpan di browser ini</footer>
+  </div>
+</div>
+
+<div id="modalRoot"></div>
+<div id="toastRoot" class="pointer-events-none fixed inset-x-0 bottom-4 z-[100] flex flex-col items-center gap-2 px-4"></div>
+
+<script src="js/core.js"></script>
+<script src="js/content.js"></script>
+<script src="js/system.js"></script>
+</body>
+</html>
